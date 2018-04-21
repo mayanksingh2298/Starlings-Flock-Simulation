@@ -8,7 +8,7 @@ y_max = x_max #y boundary
 z_max = x_max #z boundary
 numberOfBirds = 50
 deltaT = 0.1 #small time interval
-alpha = 10
+alpha = 5
 
 F1whentooclose=0.1
 F2whentooclose=0.1
