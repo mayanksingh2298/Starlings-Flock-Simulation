@@ -32,6 +32,7 @@ class Bird:
 	
 	"""update speed"""
 	def updateSpeed(self,F1,F3,dt):
+		# pass
 		spd = self.speed + (hp.v_min + (hp.v_max-hp.v_min)*2*(F1+F3-0.5))*dt
 		if spd>hp.v_max:
 			self.speed = hp.v_max
@@ -106,7 +107,31 @@ class Bird:
 
 	"""update direcection due to boundary problem"""
 	def repulsionDueToBoundary(self):
-		return [-1*(self.direction[0]),-1*(self.direction[1]),-1*(self.direction[2])]
+		dir_x=0
+		dir_y=0
+		dir_z=0
+		if self.position[0]<hp.boundaryThreshold:
+			dir_x=abs(self.direction[0])
+		elif self.position[0]>hp.x_max-hp.boundaryThreshold:
+			dir_x=-1*abs(self.direction[0])
+		else:
+			dir_x=self.direction[0]
+
+		if self.position[1]<hp.boundaryThreshold:
+			dir_y=abs(self.direction[1])
+		elif self.position[1]>hp.y_max-hp.boundaryThreshold:
+			dir_y=-1*abs(self.direction[1])
+		else:
+			dir_y=self.direction[1]
+
+		if self.position[2]<hp.boundaryThreshold:
+			dir_z=abs(self.direction[2])
+		elif self.position[2]>hp.z_max-hp.boundaryThreshold:
+			dir_z=-1*abs(self.direction[2])
+		else:
+			dir_z=self.direction[2]
+		
+		return [dir_x,dir_y,dir_z]
 
 	"""update considering all factors"""
 	def update(self,allBirds):
@@ -158,10 +183,23 @@ class Bird:
 				F2=0
 			F3=0
 			F4=0
+			
 		newDir=[F1*dir1[0]+F2*dir2[0]+F3*dir3[0]+F4*dir4[0],F1*dir1[1]+F2*dir2[1]+F3*dir3[1]+F4*dir4[1],F1*dir1[2]+F2*dir2[2]+F3*dir3[2]+F4*dir4[2]]
-		D=math.sqrt(newDir[0]**2+newDir[1]**2+newDir[2]**2)
-		print F1,F2,F3,F4
-		self.direction=[newDir[0]/D,newDir[1]/D,newDir[2]/D]
+		if self.index==0:
+			print newDir," new dir"
+		# D=math.sqrt(newDir[0]**2+newDir[1]**2+newDir[2]**2)
+		# newDir=[newDir[0]/D,newDir[1]/D,newDir[2]/D]
+
+		self.direction[0]=self.direction[0]+hp.alpha*hp.deltaT*newDir[0]
+		self.direction[1]=self.direction[1]+hp.alpha*hp.deltaT*newDir[1]
+		self.direction[2]=self.direction[2]+hp.alpha*hp.deltaT*newDir[2]
+		D=math.sqrt(self.direction[0]**2+self.direction[1]**2+self.direction[2]**2)
+		if self.index==0:
+			print self.direction," self.direction"
+		if D!=0:
+			self.direction=[self.direction[0]/D,self.direction[1]/D,self.direction[2]/D]
+		if self.index==0:
+			print D," D"
 		self.updatePosition(hp.deltaT)
 		self.updateSpeed(F1,F3,hp.deltaT)
 
