@@ -6,14 +6,14 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 
 vertices = (
-	(1, -1, -1),
-	(1, 1, -1),
-	(-1, 1, -1),
-	(-1, -1, -1),
-	(1, -1, 1),
-	(1, 1, 1),
-	(-1, -1, 1),
-	(-1, 1, 1),
+	(800, -800, -800),
+	(800, 800, -800),
+	(-800, 800, -800),
+	(-800, -800, -800),
+	(800, -800, 800),
+	(800, 800, 800),
+	(-800, -800, 800),
+	(-800, 800, 800),
 	)
 edges = (
 	(0,1),
@@ -49,14 +49,14 @@ def displayPoints():
 
 def main():
 	pygame.init()
-	display = (800,400)
+	display = (1000,1000)
 	
 	mainDisplay = pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
 	
-	gluPerspective(45.0,(display[0]/display[1]),1,50.0)
+	gluPerspective(45.0,(display[0]/display[1]),1,10000.0)
 
 	#moving back
-	glTranslatef(0.0,0.0,-5.0)
+	glTranslatef(0.0,0.0,-4000.0)
 
 	# where we might be
 	glRotatef(0,0,0,0)
@@ -65,8 +65,6 @@ def main():
 	rotateZ=0
 
 	while True:
-		
-
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				pygame.quit()
@@ -117,7 +115,7 @@ def main():
 		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 		glClearColor(1, 1, 1, 0)
 		Draw_Cube()
-		displayPoints()
+		# displayPoints()
 		pygame.display.flip()
 		pygame.time.wait(10)
 main()

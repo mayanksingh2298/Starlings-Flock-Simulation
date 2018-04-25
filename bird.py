@@ -32,24 +32,24 @@ class Bird:
 		ytmp = (self.position[1]+self.speed*self.direction[1]*dt)
 		ztmp = (self.position[2]+self.speed*self.direction[2]*dt)
 
-		if xtmp<hp.boundaryThreshold:
-			self.position[0]=hp.x_max-hp.boundaryThreshold-xtmp
+		if xtmp<hp.x_min+hp.boundaryThreshold:
+			self.position[0]=-hp.boundaryThreshold-xtmp
 		elif xtmp>hp.x_max-hp.boundaryThreshold:
-			self.position[0]=hp.x_max-xtmp
+			self.position[0]=hp.boundaryThreshold-xtmp
 		else:
 			self.position[0]=xtmp
 
-		if ytmp<hp.boundaryThreshold:
-			self.position[1]=hp.y_max-hp.boundaryThreshold-ytmp
+		if ytmp<hp.y_min+hp.boundaryThreshold:
+			self.position[1]=-hp.boundaryThreshold-ytmp
 		elif ytmp>hp.y_max-hp.boundaryThreshold:
-			self.position[1]=hp.y_max-ytmp
+			self.position[1]=hp.boundaryThreshold-ytmp
 		else:
 			self.position[1]=ytmp
 
-		if ztmp<hp.boundaryThreshold:
-			self.position[2]=hp.z_max-hp.boundaryThreshold-ztmp
+		if ztmp<hp.z_min+hp.boundaryThreshold:
+			self.position[2]=-hp.boundaryThreshold-ztmp
 		elif ztmp>hp.z_max-hp.boundaryThreshold:
-			self.position[2]=hp.z_max-ztmp
+			self.position[2]=hp.boundaryThreshold-ztmp
 		else:
 			self.position[2]=ztmp
 
@@ -219,8 +219,8 @@ class Bird:
 			F4=0
 			
 		newDir=[F1*dir1[0]+F2*dir2[0]+F3*dir3[0]+F4*dir4[0],F1*dir1[1]+F2*dir2[1]+F3*dir3[1]+F4*dir4[1],F1*dir1[2]+F2*dir2[2]+F3*dir3[2]+F4*dir4[2]]
-		if self.index==0:
-			print newDir," new dir"
+		# if self.index==0:
+		# 	print newDir," new dir"
 		
 
 		# D=math.sqrt(newDir[0]**2+newDir[1]**2+newDir[2]**2)
@@ -247,10 +247,10 @@ class Bird:
 
 
 		#DEBUGGING
-		if self.index==0:
-			print self.direction," self.direction"
-		if self.index==0:
-			print newSpeed," newSpeed"
+		# if self.index==0:
+		# 	print self.direction," self.direction"
+		# if self.index==0:
+		# 	print newSpeed," newSpeed"
 		
 
 		self.updatePosition(hp.deltaT)

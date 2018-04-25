@@ -31,16 +31,22 @@ while True:
 		force.append(physics.force(hp.mass,[x*b.speed for x in b.direction],[x*copyListOfBirds[b.index].speed for x in copyListOfBirds[b.index].direction],hp.deltaT))
 		angularmomentum.append(physics.angularMomentum(hp.mass,b.position,[x*b.speed for x in b.direction]))
 		power.append(physics.power(force[-1],[x*b.speed for x in b.direction]))
-	print listOfBirds[0]
+	# print listOfBirds[0]
 	# print "---Force---"
 	# print force
 	# print "---angularmomentum---"
 	# print angularmomentum
 	# print "---Power---"
 	# print power
-	rendering.mainDisplay.fill(hp.colorwhite)
+
+	rendering.mainDisplay.fill((255,255,255))
+	# rendering.glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+	# rendering.glClearColor(1, 1, 1, 0)
 	for b in listOfBirds:
-		rendering.drawbird(b.position)
+		tmpa=b.position[0]+hp.x_max
+		tmpb=b.position[1]+hp.y_max
+		tmpc=b.position[2]+hp.z_max
+		rendering.drawbird((tmpa,tmpb,tmpc))
 
 	rendering.updateDisplay()
 	

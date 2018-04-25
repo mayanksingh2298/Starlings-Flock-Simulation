@@ -5,7 +5,7 @@ import math
 
 listOfBirds = []
 for i in xrange(hp.numberOfBirds):
-	pos = [random.randint(0+hp.boundaryThreshold,hp.x_max-hp.boundaryThreshold),random.randint(0+hp.boundaryThreshold,hp.y_max-hp.boundaryThreshold),random.randint(0+hp.boundaryThreshold,hp.z_max-hp.boundaryThreshold)]
+	pos = [random.randint(hp.x_min+hp.boundaryThreshold,hp.x_max-hp.boundaryThreshold),random.randint(hp.y_min+hp.boundaryThreshold,hp.y_max-hp.boundaryThreshold),random.randint(hp.z_min+hp.boundaryThreshold,hp.z_max-hp.boundaryThreshold)]
 	# pos[2]=0
 
 	speed = random.randint(hp.v_min,hp.v_max)
