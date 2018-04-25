@@ -1,5 +1,6 @@
 import pygame
 import hyperparameters as hp
+import math
 
 pygame.init()
 
@@ -10,10 +11,11 @@ pygame.display.update()
 clock = pygame.time.Clock()
 
 def drawbird(r):
-	r=[int(r[0]),int(r[1])]
-	pygame.draw.circle(mainDisplay,hp.colorblack,r,3)
-	pygame.draw.circle(mainDisplay,hp.colorgreen,r,hp.R,3)
-	pygame.draw.circle(mainDisplay,hp.colorred,r,hp.r,3)
+	r_xy=[int(r[0]),int(r[1])]
+	depthColor = (0,0,int(r[2])*255/(hp.z_max-hp.boundaryThreshold))
+	pygame.draw.circle(mainDisplay,depthColor,r_xy,5)
+	pygame.draw.circle(mainDisplay,hp.colorgreen,r_xy,hp.R,3)
+	pygame.draw.circle(mainDisplay,hp.colorred,r_xy,hp.r,3)
 
 
 def updateDisplay():
