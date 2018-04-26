@@ -4,13 +4,14 @@ import math
 class Bird:
 	"""The structure of the atomic bird"""
 	birdCount = 0
-	def __init__(self, ind, pos, speed, direction, acceleration):
+	def __init__(self, ind, pos, speed, direction, acceleration, pred):
 		Bird.birdCount += 1
 		self.index=ind
 		self.position = pos
 		self.speed = speed
 		self.direction = direction
 		self.acceleration = acceleration
+		self.pred = pred
 
 	""" returns the bird count"""
 	def displayCount(self):
@@ -18,9 +19,9 @@ class Bird:
 
 	""" these two functions help in printing the bird"""
 	def __repr__(self):
-		return str(self.index)+" "+str(self.position)+" "+str(self.speed)+" "+str(self.acceleration)+" "+str(self.direction)
+		return str(self.index)+" "+str(self.pred)+" "+str(self.position)+" "+str(self.speed)+" "+str(self.acceleration)+" "+str(self.direction)
 	def __str__(self):
-		return str(self.index)+" "+str(self.position)+" "+str(self.speed)+" "+str(self.acceleration)+" "+str(self.direction)
+		return str(self.index)+" "+str(self.pred)+" "+str(self.position)+" "+str(self.speed)+" "+str(self.acceleration)+" "+str(self.direction)
 
 	"""overload the == operator"""
 	def __eq__(self,other):
@@ -79,9 +80,9 @@ class Bird:
 			y_avg = 0
 			z_avg = 0
 			for b in neighboursList:
-				x_avg += b.position[0]
-				y_avg += b.position[1]
-				z_avg += b.position[2]
+				x_avg += b.position[0]*b.pred
+				y_avg += b.position[1]*b.pred
+				z_avg += b.position[2]*b.pred
 			x_avg/=float(len(neighboursList))
 			y_avg/=float(len(neighboursList))
 			z_avg/=float(len(neighboursList))
@@ -98,9 +99,9 @@ class Bird:
 			uy_avg = 0
 			uz_avg = 0
 			for b in neighboursList:
-				ux_avg += b.direction[0]
-				uy_avg += b.direction[1]
-				uz_avg += b.direction[2]
+				ux_avg += b.direction[0]*b.pred
+				uy_avg += b.direction[1]*b.pred
+				uz_avg += b.direction[2]*b.pred
 			ux_avg/= float(len(neighboursList))
 			uy_avg/= float(len(neighboursList))
 			uz_avg/= float(len(neighboursList))
@@ -177,8 +178,8 @@ class Bird:
 				neighbours_r.append(b)
 			if(math.sqrt((self.position[0]-b.position[0])**2+(self.position[1]-b.position[1])**2+(self.position[2]-b.position[2])**2)<hp.R):
 				neighbours_R.append(b)
-		ind = min(7,len(neighbours_R))
-		neighbours_R = neighbours_R[0:ind]
+		# ind = min(7,len(neighbours_R))
+		# neighbours_R = neighbours_R[0:ind]
 		dir1=self.directionByOthersPosition(neighbours_R)
 		dir2=self.directionByOthersDirection(neighbours_R)
 		dir3=self.repulsionByTooCloseNeighbours(neighbours_r)
@@ -212,6 +213,8 @@ class Bird:
 				D=math.sqrt((self.position[0]-x_avg)**2+(self.position[1]-y_avg)**2+(self.position[2]-z_avg)**2)
 				F1=D/hp.R
 				F2=1-D/hp.R
+				# F1=1
+				# F2=0
 			else:
 				F1=1
 				F2=0

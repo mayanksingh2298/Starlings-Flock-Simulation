@@ -21,7 +21,9 @@ pygame.display.flip()
 clock = pygame.time.Clock()
 
 #getting the list of initialized birds
-listOfBirds = initialize.listOfBirds
+listOfBirds = []
+for b in initialize.getRandomList():
+	listOfBirds.append(copy.deepcopy(b))
 
 vertices = ((hp.x_max, hp.y_min, hp.z_min),(hp.x_max, hp.y_max, hp.z_min),(hp.x_min, hp.y_max, hp.z_min),(hp.x_min, hp.y_min, hp.z_min),(hp.x_max, hp.y_min, hp.z_max),(hp.x_max, hp.y_max, hp.z_max),(hp.x_min, hp.y_min, hp.z_max),(hp.x_min, hp.y_max, hp.z_max),)
 edges = ((0,1),(0,3),(0,4),(2,1),(2,3),(2,7),(6,3),(6,4),(6,7),(5,1),(5,4),(5,7),)
@@ -57,38 +59,46 @@ def drawbird(r):
 	tailSq3 = (tailCentre[0]-8*tmpDir2[0],tailCentre[1]-8*tmpDir2[1],tailCentre[2]-8*tmpDir2[2])
 	tailSq4 = (tailCentre[0]+8*tmpDir2[0],tailCentre[1]+8*tmpDir2[1],tailCentre[2]+8*tmpDir2[2])
 	
-
-	glBegin(GL_TRIANGLES)
-	glColor3fv((0.5,0.5,0.5))
-	glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
-	glVertex3fv((int(tailSq1[0]),int(tailSq1[1]),int(tailSq1[2])))
-	glVertex3fv((int(tailSq3[0]),int(tailSq3[1]),int(tailSq3[2])))
-	glEnd()
-	glBegin(GL_TRIANGLES)
-	glColor3fv((0.7,0.7,0.7))
-	glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
-	glVertex3fv((int(tailSq3[0]),int(tailSq3[1]),int(tailSq3[2])))
-	glVertex3fv((int(tailSq2[0]),int(tailSq2[1]),int(tailSq2[2])))
-	glEnd()
-	glBegin(GL_TRIANGLES)
-	glColor3fv((0.5,0.5,0.5)) 
-	glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
-	glVertex3fv((int(tailSq2[0]),int(tailSq2[1]),int(tailSq2[2])))
-	glVertex3fv((int(tailSq4[0]),int(tailSq4[1]),int(tailSq4[2])))
-	glEnd()
-	glBegin(GL_TRIANGLES)
-	glColor3fv((0.7,0.7,0.7))
-	glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
-	glVertex3fv((int(tailSq4[0]),int(tailSq4[1]),int(tailSq4[2])))
-	glVertex3fv((int(tailSq1[0]),int(tailSq1[1]),int(tailSq1[2])))
-	glEnd()
-	glBegin(GL_QUADS)
-	glColor3fv((0.4,0.4,0.4))
-	glVertex3fv((int(tailSq1[0]),int(tailSq1[1]),int(tailSq1[2])))
-	glVertex3fv((int(tailSq3[0]),int(tailSq3[1]),int(tailSq3[2])))
-	glVertex3fv((int(tailSq2[0]),int(tailSq2[1]),int(tailSq2[2])))
-	glVertex3fv((int(tailSq4[0]),int(tailSq4[1]),int(tailSq4[2])))
-	glEnd()
+	if r.pred==-1:
+		glBegin(GL_QUADS)
+		glColor3fv((0,0,0))
+		glVertex3fv((int(tailSq1[0]),int(tailSq1[1]),int(tailSq1[2])))
+		glVertex3fv((int(tailSq3[0]),int(tailSq3[1]),int(tailSq3[2])))
+		glVertex3fv((int(tailSq2[0]),int(tailSq2[1]),int(tailSq2[2])))
+		glVertex3fv((int(tailSq4[0]),int(tailSq4[1]),int(tailSq4[2])))
+		glEnd()
+	else:
+		glBegin(GL_TRIANGLES)
+		glColor3fv((0.5,0.5,0.5))
+		glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
+		glVertex3fv((int(tailSq1[0]),int(tailSq1[1]),int(tailSq1[2])))
+		glVertex3fv((int(tailSq3[0]),int(tailSq3[1]),int(tailSq3[2])))
+		glEnd()
+		glBegin(GL_TRIANGLES)
+		glColor3fv((0.7,0.7,0.7))
+		glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
+		glVertex3fv((int(tailSq3[0]),int(tailSq3[1]),int(tailSq3[2])))
+		glVertex3fv((int(tailSq2[0]),int(tailSq2[1]),int(tailSq2[2])))
+		glEnd()
+		glBegin(GL_TRIANGLES)
+		glColor3fv((0.5,0.5,0.5)) 
+		glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
+		glVertex3fv((int(tailSq2[0]),int(tailSq2[1]),int(tailSq2[2])))
+		glVertex3fv((int(tailSq4[0]),int(tailSq4[1]),int(tailSq4[2])))
+		glEnd()
+		glBegin(GL_TRIANGLES)
+		glColor3fv((0.7,0.7,0.7))
+		glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
+		glVertex3fv((int(tailSq4[0]),int(tailSq4[1]),int(tailSq4[2])))
+		glVertex3fv((int(tailSq1[0]),int(tailSq1[1]),int(tailSq1[2])))
+		glEnd()
+		glBegin(GL_QUADS)
+		glColor3fv((0.4,0.4,0.4))
+		glVertex3fv((int(tailSq1[0]),int(tailSq1[1]),int(tailSq1[2])))
+		glVertex3fv((int(tailSq3[0]),int(tailSq3[1]),int(tailSq3[2])))
+		glVertex3fv((int(tailSq2[0]),int(tailSq2[1]),int(tailSq2[2])))
+		glVertex3fv((int(tailSq4[0]),int(tailSq4[1]),int(tailSq4[2])))
+		glEnd()
 	
 	# glBegin(GL_LINES)
 	# glColor4f(255,255,255,0) 
@@ -116,7 +126,6 @@ def drawbird(r):
 	# glVertex3fv((int(tailCentre[0]),int(tailCentre[1]),int(tailCentre[2])))
 
 	# glEnd()
-
 gluPerspective(45.0,(hp.window_width/hp.window_height),1,10000.0)
 
 #moving back
@@ -135,6 +144,8 @@ while True:
 		copyListOfBirds.append(copy.deepcopy(b))
 
 	for	b in listOfBirds:
+		if b.pred==-1:
+			continue
 		b.update(copyListOfBirds)
 		force.append(physics.force(hp.mass,[x*b.speed for x in b.direction],[x*copyListOfBirds[b.index].speed for x in copyListOfBirds[b.index].direction],hp.deltaT))
 		angularmomentum.append(physics.angularMomentum(hp.mass,b.position,[x*b.speed for x in b.direction]))
@@ -153,15 +164,16 @@ while True:
 			pygame.quit()
 			quit()
 		if event.type == pygame.MOUSEBUTTONDOWN:
-			print  event
-			print event.button
 			if event.button ==4:
 				glTranslatef(0.0,0.0,10.0)
 			elif event.button ==5:
 				glTranslatef(0.0,0.0,-10.0)
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_ESCAPE: pygame.quit(); sys.exit()
-
+			if event.key == pygame.K_r: #RESET
+				listOfBirds=[]
+				for b in initialize.getRandomList():
+					listOfBirds.append(copy.deepcopy(b))
 			if event.key == pygame.K_w:
 				rotateX = 5
 			if event.key == pygame.K_s:
