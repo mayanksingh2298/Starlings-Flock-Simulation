@@ -71,4 +71,3 @@ def drawbird(r):
 
 def updateDisplay():
 	pygame.display.update()
-print ""
