@@ -167,17 +167,19 @@ class Bird:
 		# return [dir_x,dir_y,dir_z]
 
 	"""update considering all factors"""
-	def update(self,allBirds):
-		neighbours_R=[]
-		neighbours_r=[]
+	def update(self,neighbours_R,neighbours_r):
+		# neighbours_R=[]
+		# neighbours_r=[]
+		neighbours_R=neighbours_R[self.index]
+		neighbours_r=neighbours_r[self.index]
 
-		for b in allBirds:
-			if b==self or (b.position[0]==self.position[0] and b.position[1]==self.position[1] and b.position[2]==self.position[2]):
-				continue
-			if(math.sqrt((self.position[0]-b.position[0])**2+(self.position[1]-b.position[1])**2+(self.position[2]-b.position[2])**2)<hp.r):
-				neighbours_r.append(b)
-			if(math.sqrt((self.position[0]-b.position[0])**2+(self.position[1]-b.position[1])**2+(self.position[2]-b.position[2])**2)<hp.R):
-				neighbours_R.append(b)
+		# for b in allBirds:
+		# 	if b==self or (b.position[0]==self.position[0] and b.position[1]==self.position[1] and b.position[2]==self.position[2]):
+		# 		continue
+		# 	if(math.sqrt((self.position[0]-b.position[0])**2+(self.position[1]-b.position[1])**2+(self.position[2]-b.position[2])**2)<hp.r):
+		# 		neighbours_r.append(b)
+		# 	if(math.sqrt((self.position[0]-b.position[0])**2+(self.position[1]-b.position[1])**2+(self.position[2]-b.position[2])**2)<hp.R):
+		# 		neighbours_R.append(b)
 		# ind = min(7,len(neighbours_R))
 		# neighbours_R = neighbours_R[0:ind]
 		dir1=self.directionByOthersPosition(neighbours_R)

@@ -35,8 +35,8 @@ def getRandomList():
 		listOfBirds.append(bird.Bird(i,pos,speed,direction,hp.acc_min,pred))
 
 		##setting the boundary
-	ct = bird.Bird.birdCount
-	listOfBirds.append(bird.Bird(ct,[0,0,0],0,[1,0,0],0,-1))
+	# ct = bird.Bird.birdCount
+	# listOfBirds.append(bird.Bird(ct,[0,0,0],0,[1,0,0],0,-1))
 	return listOfBirds
 
 # for i in range(hp.z_min,hp.z_max,100):
