@@ -170,8 +170,8 @@ class Bird:
 	def update(self,neighbours_R,neighbours_r):
 		# neighbours_R=[]
 		# neighbours_r=[]
-		neighbours_R=neighbours_R[self.index]
-		neighbours_r=neighbours_r[self.index]
+		# neighbours_R=neighbours_R[self.index]
+		# neighbours_r=neighbours_r[self.index]
 
 		# for b in allBirds:
 		# 	if b==self or (b.position[0]==self.position[0] and b.position[1]==self.position[1] and b.position[2]==self.position[2]):
