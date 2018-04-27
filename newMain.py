@@ -49,8 +49,11 @@ def drawbirds(listOfBirds):
 	rotateX=0
 	rotateY=0
 	rotateZ=0
+	copyListOfBirds = (listOfBirds)
 	while True:
-		print "drawbirds"
+		force=[]
+		angularmomentum=[]
+		power=[]
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				pygame.quit()
@@ -64,9 +67,17 @@ def drawbirds(listOfBirds):
 				if event.key == pygame.K_ESCAPE: pygame.quit(); sys.exit()
 				if event.key == pygame.K_r: #RESET
 					ct=0
-					# for b in initialize.getRandomList():
-					# 	listOfBirds[ct]=b
-					# 	ct+=1
+					for b in initialize.getRandomList():
+						listOfBirds[ct]=b
+						ct+=1
+				if event.key == pygame.K_p: #get physical parameters
+					for b in copyListOfBirds:
+						force.append(physics.force(hp.mass,[x*b.speed for x in b.direction],b.prevVelocity,hp.deltaT))
+						angularmomentum.append(physics.angularMomentum(hp.mass,b.position,[x*b.speed for x in b.direction]))
+						power.append(physics.power(force[-1],[x*b.speed for x in b.direction]))
+					print force[0]
+					print power[0]
+					print angularmomentum[0]
 				if event.key == pygame.K_w:
 					rotateX = 5
 				if event.key == pygame.K_s:
@@ -106,7 +117,6 @@ def drawbirds(listOfBirds):
 
 		Draw_Cube()
 		time1 = time.time()*1000
-		copyListOfBirds = (listOfBirds)
 		time2 = time.time()*1000
 		# print time2-time1
 		# copyListOfBirds = initialize.getRandomList()
@@ -136,57 +146,25 @@ def drawbirds(listOfBirds):
 			# tailSq4 = (tailCentre[0]+8*tmpDir2[0],tailCentre[1]+8*tmpDir2[1],tailCentre[2]+8*tmpDir2[2])
 			
 			if r.pred==-1:
-				glBegin(GL_QUADS)
+				glBegin(GL_TRIANGLES)
 				glColor3fv((0,0,0))
+				glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
 				glVertex3fv((int(tailSq1[0]),int(tailSq1[1]),int(tailSq1[2])))
-				glVertex3fv((int(tailSq3[0]),int(tailSq3[1]),int(tailSq3[2])))
 				glVertex3fv((int(tailSq2[0]),int(tailSq2[1]),int(tailSq2[2])))
-				glVertex3fv((int(tailSq4[0]),int(tailSq4[1]),int(tailSq4[2])))
 				glEnd()
 			else:
-				# glBegin(GL_LINES)
-				# glColor3fv((0.5,0.5,0.5))
-				# glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
-				# glVertex3fv((int(tailCentre[0]),int(tailCentre[1]),int(tailCentre[2])))
-				# # glVertex3fv((int(tailSq3[0]),int(tailSq3[1]),int(tailSq3[2])))
-				# glEnd()
 				glBegin(GL_TRIANGLES)
 				glColor3fv((0.5,0.5,0.5))
 				glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
 				glVertex3fv((int(tailSq1[0]),int(tailSq1[1]),int(tailSq1[2])))
 				glVertex3fv((int(tailSq2[0]),int(tailSq2[1]),int(tailSq2[2])))
 				glEnd()
-				# glBegin(GL_TRIANGLES)
-				# glColor3fv((0.7,0.7,0.7))
-				# glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
-				# glVertex3fv((int(tailSq3[0]),int(tailSq3[1]),int(tailSq3[2])))
-				# glVertex3fv((int(tailSq2[0]),int(tailSq2[1]),int(tailSq2[2])))
-				# glEnd()
-				# glBegin(GL_TRIANGLES)
-				# glColor3fv((0.5,0.5,0.5)) 
-				# glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
-				# glVertex3fv((int(tailSq2[0]),int(tailSq2[1]),int(tailSq2[2])))
-				# glVertex3fv((int(tailSq4[0]),int(tailSq4[1]),int(tailSq4[2])))
-				# glEnd()
-				# glBegin(GL_TRIANGLES)
-				# glColor3fv((0.7,0.7,0.7))
-				# glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
-				# glVertex3fv((int(tailSq4[0]),int(tailSq4[1]),int(tailSq4[2])))
-				# glVertex3fv((int(tailSq1[0]),int(tailSq1[1]),int(tailSq1[2])))
-				# glEnd()
-				# glBegin(GL_QUADS)
-				# glColor3fv((0.4,0.4,0.4))
-				# glVertex3fv((int(tailSq1[0]),int(tailSq1[1]),int(tailSq1[2])))
-				# glVertex3fv((int(tailSq3[0]),int(tailSq3[1]),int(tailSq3[2])))
-				# glVertex3fv((int(tailSq2[0]),int(tailSq2[1]),int(tailSq2[2])))
-				# glVertex3fv((int(tailSq4[0]),int(tailSq4[1]),int(tailSq4[2])))
-				# glEnd()
+			
 		pygame.display.flip()
 		time2 = time.time()*1000
-		print time2-time1
+		# print time2-time1
 		clock.tick(hp.fps)
-		# time.sleep(1.0)
-		# sys.stdout.flush()
+		# ch=input()
 
 gluPerspective(45.0,(hp.window_width/hp.window_height),1,10000.0)
 
@@ -201,7 +179,7 @@ clock = pygame.time.Clock()
 def updateBirds(listOfBirds,neighbours_R,neighbours_r):
 	while True:
 		# print os.getpid()
-		print "updateBirds"
+		# print "updateBirds"
 		force=[]
 		angularmomentum=[]
 		power=[]
@@ -229,7 +207,7 @@ def updateBirds(listOfBirds,neighbours_R,neighbours_r):
 		
 def updateNeighbours(listOfBirds,neighbours_R,neighbours_r):
 	while True:
-		print "updateNeighbours"
+		# print "updateNeighbours"
 		copyListOfBirds=list(listOfBirds)
 		for ind in range(hp.numberOfBirds):
 			# print ind

@@ -12,6 +12,7 @@ class Bird:
 		self.direction = direction
 		self.acceleration = acceleration
 		self.pred = pred
+		self.prevVelocity = direction
 
 	""" returns the bird count"""
 	def displayCount(self):
@@ -182,6 +183,7 @@ class Bird:
 		# 		neighbours_R.append(b)
 		# ind = min(7,len(neighbours_R))
 		# neighbours_R = neighbours_R[0:ind]
+		self.prevVelocity=[self.speed*self.direction[0],self.speed*self.direction[1],self.speed*self.direction[2]]
 		dir1=self.directionByOthersPosition(neighbours_R)
 		dir2=self.directionByOthersDirection(neighbours_R)
 		dir3=self.repulsionByTooCloseNeighbours(neighbours_r)

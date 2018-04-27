@@ -1,6 +1,5 @@
 TODO:
 
-2. multi threading
-3. obstacles
-4. control of rules in gui
-5. physics
+1. multi threading
+2. correct physics
+3. correct maths
