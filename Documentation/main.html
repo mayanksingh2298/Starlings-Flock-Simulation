@@ -1,0 +1,74 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module main</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>main</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/mayanksingh2298/IIT_Course/sem4/cop290/Projects/COP290_Starlings/main.py">/home/mayanksingh2298/IIT_Course/sem4/cop290/Projects/COP290_Starlings/main.py</a></font></td></tr></table>
+    <p><tt>This&nbsp;is&nbsp;the&nbsp;main&nbsp;file&nbsp;which&nbsp;needs&nbsp;to&nbsp;be&nbsp;run&nbsp;to&nbsp;simulate&nbsp;the&nbsp;birds.<br>
+Usage&nbsp;of&nbsp;modules:<br>
+math&nbsp;:&nbsp;for&nbsp;mathematical&nbsp;calculations<br>
+physics&nbsp;:&nbsp;for&nbsp;calculating&nbsp;physical&nbsp;variables<br>
+copy&nbsp;:&nbsp;for&nbsp;deep&nbsp;copying&nbsp;of&nbsp;objects<br>
+hyperparameters&nbsp;:&nbsp;to&nbsp;run&nbsp;the&nbsp;simulation&nbsp;based&nbsp;on&nbsp;some&nbsp;predefined&nbsp;hyperparameters<br>
+sys&nbsp;:&nbsp;for&nbsp;calling&nbsp;sys.exit<br>
+initialize&nbsp;:&nbsp;to&nbsp;initialize&nbsp;the&nbsp;birds<br>
+multiprocessing&nbsp;:&nbsp;to&nbsp;run&nbsp;some&nbsp;parts&nbsp;of&nbsp;the&nbsp;program&nbsp;on&nbsp;different&nbsp;cores<br>
+bird&nbsp;:&nbsp;this&nbsp;contains&nbsp;the&nbsp;model&nbsp;of&nbsp;atomic&nbsp;bird<br>
+pygame&nbsp;:&nbsp;to&nbsp;control&nbsp;user&nbsp;events<br>
+pyopengl&nbsp;:&nbsp;to&nbsp;render&nbsp;graphics</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top>
+<a href="OpenGL.html">OpenGL</a><br>
+<a href="pygame.html">pygame</a><br>
+<a href="multiprocessing.html">multiprocessing</a><br>
+<a href="sys.html">sys</a><br>
+<a href="time.html">time</a><br>
+<a href="math.html">math</a><br>
+</td>
+<td width="25%" valign=top>
+<a href="bird.html">bird</a><br>
+<a href="hyperparameters.html">hyperparameters</a><br>
+<a href="initialize.html">initialize</a><br>
+<a href="physics.html">physics</a><br>
+</td>
+</tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-Draw_Cube"><strong>Draw_Cube</strong></a>()</dt><dd><tt>This&nbsp;function&nbsp;draws&nbsp;the&nbsp;outer&nbsp;cube&nbsp;which&nbsp;contains&nbsp;the&nbsp;birds</tt></dd></dl>
+ <dl><dt><a name="-drawbirds"><strong>drawbirds</strong></a>(listOfBirds)</dt><dd><tt>This&nbsp;function&nbsp;draws&nbsp;the&nbsp;birds</tt></dd></dl>
+ <dl><dt><a name="-sizeof"><strong>sizeof</strong></a>(...)</dt><dd><tt><a href="#-sizeof">sizeof</a>(C&nbsp;type)&nbsp;-&gt;&nbsp;integer<br>
+<a href="#-sizeof">sizeof</a>(C&nbsp;instance)&nbsp;-&gt;&nbsp;integer<br>
+Return&nbsp;the&nbsp;size&nbsp;in&nbsp;bytes&nbsp;of&nbsp;a&nbsp;C&nbsp;instance</tt></dd></dl>
+ <dl><dt><a name="-updateBirds"><strong>updateBirds</strong></a>(listOfBirds, neighbours_R, neighbours_r)</dt><dd><tt>This&nbsp;function&nbsp;updates&nbsp;the&nbsp;birds</tt></dd></dl>
+ <dl><dt><a name="-updateNeighbours"><strong>updateNeighbours</strong></a>(listOfBirds, neighbours_R, neighbours_r)</dt><dd><tt>This&nbsp;function&nbsp;updates&nbsp;the&nbsp;neighbours</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">
+
+<strong>listOfBirds</strong> = &lt;ListProxy object, typeid 'list'&gt;<br>
+<strong>listOfBirdsTmp</strong> = [0 1 [155, 349, -45] 23 50 [0.4461883254496255, 0.05003802117119838, 0.8935391287849289], 1 1 [136, 74, -236] 16 50 [0.30153009664803976, 0.1920709758729402, 0.9339102424979824], 2 1 [-323, -170, 296] 25 50 [-0.29267516934143323, 0.6472232511987726, -0.7038773390006627], 3 1 [-93, -372, -26] 18 50 [0.2925862364679007, 0.7329739524366985, 0.6141192712160025], 4 1 [300, 219, -56] 23 50 [-0.6849189290856783, 0.3205008701792563, 0.6543433752965389], 5 1 [336, -281, 395] 20 50 [-0.2883973756163225, -0.4174582881631319, -0.861716618954007], 6 1 [249, 182, -7] 24 50 [0.8455660978318154, -0.03934229071730866, 0.532419156641261], 7 1 [-95, 322, 355] 25 50 [0.22849618039648778, 0.8529207058085421, -0.46937806206433874], 8 1 [259, 398, -271] 25 50 [0.21286277673806897, 0.485640630352136, 0.8478458683219132], 9 1 [-240, 70, -329] 18 50 [0.5152480962044428, -0.6847879139908372, 0.5153493108657226], 10 1 [35, -295, 319] 17 50 [0.9206718630693911, 0.28873220298198343, -0.2626728678670621], 11 1 [-313, 244, -388] 24 50 [-0.5737058575542626, 0.22147049127202867, -0.7885508293722444], 12 1 [77, -34, 368] 22 50 [0.148038462366069, -0.06378069921724694, 0.9869228116056742], 13 1 [96, -111, -9] 21 50 [0.7066060873822793, 0.2875001405441576, -0.6465690268342557], 14 1 [140, 209, 296] 19 50 [-0.5383594111244291, 0.17961080623932535, 0.8233523563674409], 15 1 [69, -142, -249] 17 50 [-0.8449164932848079, 0.12398342320886613, -0.5203308852496789], 16 1 [383, 349, 291] 20 50 [0.3002306833681496, 0.8819674901618516, 0.36331100046915465], 17 1 [-343, 359, 15] 19 50 [-0.7727260025026665, 0.6130325452996085, 0.16457710490749458], 18 1 [344, -24, 174] 25 50 [0.7690865433919085, -0.18433306911997394, -0.6119862812206635], 19 1 [-28, -332, -390] 23 50 [-0.6505751979430353, -0.4426597870849286, -0.6170933679106477], ...]<br>
+<strong>mainDisplay</strong> = &lt;Surface(1000x1000x32 SW)&gt;<br>
+<strong>manager</strong> = &lt;multiprocessing.managers.SyncManager object&gt;<br>
+<strong>vertices</strong> = ((500, -500, -500), (500, 500, -500), (-500, 500, -500), (-500, -500, -500), (500, -500, 500), (500, 500, 500), (-500, -500, 500), (-500, 500, 500))<br>
+</body></html>

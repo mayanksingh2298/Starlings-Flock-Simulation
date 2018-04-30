@@ -1,10 +1,23 @@
 #ADD DIRECTION CHANGE F2
+"""
+This file contains the structure of an atomic bird
+"""
 import hyperparameters as hp
 import math
 class Bird:
-	"""The structure of the atomic bird"""
+	"""This is the bird class"""
 	birdCount = 0
 	def __init__(self, ind, pos, speed, direction, acceleration, pred):
+		"""
+		This is the constructor for the bird.
+		:index: uid of bird
+		:position: coordinates of the bird
+		:speed: magnetude of bird's velocity
+		:direction: direction in which the bird is going
+		:acceleration: magnetude of bird's acceleration
+		:pred: this indicates if this object is a bird or an obstacle
+		:prevVelocity: this stores the previous velocity of bird to calculate physical parameters
+		"""
 		Bird.birdCount += 1
 		self.index=ind
 		self.position = pos
@@ -14,22 +27,22 @@ class Bird:
 		self.pred = pred
 		self.prevVelocity = direction
 
-	""" returns the bird count"""
 	def displayCount(self):
+		""" returns the bird count"""
 		return Bird.birdCount
 
-	""" these two functions help in printing the bird"""
 	def __repr__(self):
+		""" these two functions help in printing the bird"""
 		return str(self.index)+" "+str(self.pred)+" "+str(self.position)+" "+str(self.speed)+" "+str(self.acceleration)+" "+str(self.direction)
 	def __str__(self):
 		return str(self.index)+" "+str(self.pred)+" "+str(self.position)+" "+str(self.speed)+" "+str(self.acceleration)+" "+str(self.direction)
 
-	"""overload the == operator"""
 	def __eq__(self,other):
+		"""overload the == operator"""
 		return self.index==other.index
 
-	"""update position"""
 	def updatePosition(self,dt):
+		"""update position of bird using velocity"""
 		xtmp = (self.position[0]+self.speed*self.direction[0]*dt)
 		ytmp = (self.position[1]+self.speed*self.direction[1]*dt)
 		ztmp = (self.position[2]+self.speed*self.direction[2]*dt)
@@ -57,8 +70,8 @@ class Bird:
 
 
 	
-	"""update speed"""
 	def updateAcceleration(self,F1,F2,F3):
+		"""update bird's acceleration"""
 		# spd = self.speed + (hp.v_min + (hp.v_max-hp.v_min)*2*(F1+F3-0.5))*dt
 		# if spd>hp.v_max:
 		# 	self.speed = hp.v_max
@@ -74,8 +87,8 @@ class Bird:
 		# else:
 		# 	self.speed = spd
 
-	"""update direction by position of other birds"""
 	def directionByOthersPosition(self,neighboursList):
+		"""update direction by position of other birds"""
 		if len(neighboursList)!= 0:
 			x_avg = 0
 			y_avg = 0
@@ -93,8 +106,8 @@ class Bird:
 			return [(x_avg-self.position[0])/denominator,(y_avg-self.position[1])/denominator,(z_avg-self.position[2])/denominator]
 		else:
 			return self.direction
-	"""direction by other birds' direction"""
 	def directionByOthersDirection(self,neighboursList):
+		"""direction by other birds' direction"""
 		if len(neighboursList)!=0:
 			ux_avg = 0
 			uy_avg = 0
@@ -112,8 +125,8 @@ class Bird:
 		else:
 			return self.direction
 
-	"""repulsion due to very close neighbours"""
 	def repulsionByTooCloseNeighbours(self,neighboursList):
+		"""repulsion due to very close neighbours"""
 		if len(neighboursList)!=0:
 			num_x=0
 			num_y=0
@@ -138,8 +151,8 @@ class Bird:
 		else:
 			return self.direction
 
-	"""update direcection due to boundary problem"""
 	def repulsionDueToBoundary(self):
+		"""update direcection due to boundary problem"""
 		return self.direction
 		# dir_x=0
 		# dir_y=0
@@ -167,8 +180,8 @@ class Bird:
 		
 		# return [dir_x,dir_y,dir_z]
 
-	"""update considering all factors"""
 	def update(self,neighbours_R,neighbours_r):
+		"""update considering all factors"""
 		# neighbours_R=[]
 		# neighbours_r=[]
 		# neighbours_R=neighbours_R[self.index]

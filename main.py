@@ -1,18 +1,38 @@
+"""
+This is the main file which needs to be run to simulate the birds.
+Usage of modules:
+
+math : for mathematical calculations
+
+physics : for calculating physical variables
+
+copy : for deep copying of objects
+
+hyperparameters : to run the simulation based on some predefined hyperparameters
+
+sys : for calling sys.exit
+
+initialize : to initialize the birds
+
+multiprocessing : to run some parts of the program on different cores
+
+bird : this contains the model of atomic bird
+
+pygame : to control user events
+
+pyopengl : to render graphics
+"""
+
 import math
 import physics
 import copy
 import hyperparameters as hp
-import math
-import sys
 import initialize
 import multiprocessing
 import bird
 import time
 
-import logging
 import sys
-import os
-
 import pygame
 from pygame.locals import *
 from OpenGL.GL import *
@@ -38,6 +58,8 @@ listOfBirds.extend(listOfBirdsTmp)
 vertices = ((hp.x_max, hp.y_min, hp.z_min),(hp.x_max, hp.y_max, hp.z_min),(hp.x_min, hp.y_max, hp.z_min),(hp.x_min, hp.y_min, hp.z_min),(hp.x_max, hp.y_min, hp.z_max),(hp.x_max, hp.y_max, hp.z_max),(hp.x_min, hp.y_min, hp.z_max),(hp.x_min, hp.y_max, hp.z_max),)
 edges = ((0,1),(0,3),(0,4),(2,1),(2,3),(2,7),(6,3),(6,4),(6,7),(5,1),(5,4),(5,7),)
 def Draw_Cube():
+	"""This function draws the outer cube which contains the birds
+	"""
 	glBegin(GL_LINES)
 	for edge in edges:
 		for vertex in edge:
@@ -45,6 +67,7 @@ def Draw_Cube():
 			glVertex3fv(vertices[vertex])
 	glEnd()
 def drawbirds(listOfBirds):
+	"""This function draws the birds"""
 	# glBegin(GL_LINES)
 	rotateX=0
 	rotateY=0
@@ -177,6 +200,7 @@ clock = pygame.time.Clock()
 
 # p2.join()
 def updateBirds(listOfBirds,neighbours_R,neighbours_r):
+	"""This function updates the birds"""
 	while True:
 		# print os.getpid()
 		# print "updateBirds"
@@ -206,6 +230,7 @@ def updateBirds(listOfBirds,neighbours_R,neighbours_r):
 		# print power
 		
 def updateNeighbours(listOfBirds,neighbours_R,neighbours_r):
+	"""This function updates the neighbours"""
 	while True:
 		# print "updateNeighbours"
 		copyListOfBirds=list(listOfBirds)

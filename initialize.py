@@ -1,9 +1,15 @@
+"""
+This file is used to initilize the birds
+"""
 import bird
 import hyperparameters as hp
 import random
 import math
 
 def getRandomList():
+	"""
+		generates a list of birds with random position and velocity
+	"""
 	listOfBirds = []
 	for i in xrange(hp.numberOfBirds-hp.numberOfBirds/10):
 		pos = [random.randint(hp.x_min+hp.boundaryThreshold,hp.x_max-hp.boundaryThreshold),random.randint(hp.y_min+hp.boundaryThreshold,hp.y_max-hp.boundaryThreshold),random.randint(hp.z_min+hp.boundaryThreshold,hp.z_max-hp.boundaryThreshold)]
