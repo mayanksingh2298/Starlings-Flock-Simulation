@@ -24,7 +24,7 @@ window_height : height of screen
 fps : fps of screen
 """
 
-R =200#radius of flock
+R =100#radius of flock
 r = 50 #too close bird
 boundaryThreshold = 0 #reverse the direction
 v_min = 15 #minimum speed
@@ -39,8 +39,8 @@ z_min = x_min
 # z_min = 0
 numberOfBirds = 100
 deltaT = 0.1 #small time interval
-acc_min = 25
-acc_max = 50
+acc_min = 5
+acc_max = 10
 
 
 F1whentooclose=0.25

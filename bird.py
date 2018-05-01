@@ -207,38 +207,42 @@ class Bird:
 		F2=0
 		F3=0
 		F4=0
-		if(self.position[0]<hp.boundaryThreshold or self.position[1]<hp.boundaryThreshold or self.position[2]<hp.boundaryThreshold or self.position[0]>hp.x_max-hp.boundaryThreshold or self.position[1]>hp.y_max-hp.boundaryThreshold or self.position[2]>hp.z_max-hp.boundaryThreshold):
-			F1=0
-			F2=0
-			F3=0
-			F4=1
-		elif(len(neighbours_r)!=0):
-			F1=hp.F1whentooclose
-			F2=hp.F2whentooclose
-			F3=hp.F3whentooclose
-			F4=0
-		else:
-			if(len(neighbours_R)!=0):
-				x_avg = 0
-				y_avg = 0
-				z_avg = 0
-				for b in neighbours_R:
-					x_avg += b.position[0]
-					y_avg += b.position[1]
-					z_avg += b.position[2]
-				x_avg/=float(len(neighbours_R))
-				y_avg/=float(len(neighbours_R))
-				z_avg/=float(len(neighbours_R))
-				D=math.sqrt((self.position[0]-x_avg)**2+(self.position[1]-y_avg)**2+(self.position[2]-z_avg)**2)
-				F1=D/hp.R
-				F2=1-D/hp.R
-				# F1=1
-				# F2=0
-			else:
-				F1=1
-				F2=0
-			F3=0
-			F4=0
+		F1=1
+		F2=1
+		F3=1.5
+
+		# if(self.position[0]<hp.boundaryThreshold or self.position[1]<hp.boundaryThreshold or self.position[2]<hp.boundaryThreshold or self.position[0]>hp.x_max-hp.boundaryThreshold or self.position[1]>hp.y_max-hp.boundaryThreshold or self.position[2]>hp.z_max-hp.boundaryThreshold):
+		# 	F1=0
+		# 	F2=0
+		# 	F3=0
+		# 	F4=1
+		# elif(len(neighbours_r)!=0):
+		# 	F1=hp.F1whentooclose
+		# 	F2=hp.F2whentooclose
+		# 	F3=hp.F3whentooclose
+		# 	F4=0
+		# else:
+		# 	if(len(neighbours_R)!=0):
+		# 		x_avg = 0
+		# 		y_avg = 0
+		# 		z_avg = 0
+		# 		for b in neighbours_R:
+		# 			x_avg += b.position[0]
+		# 			y_avg += b.position[1]
+		# 			z_avg += b.position[2]
+		# 		x_avg/=float(len(neighbours_R))
+		# 		y_avg/=float(len(neighbours_R))
+		# 		z_avg/=float(len(neighbours_R))
+		# 		D=math.sqrt((self.position[0]-x_avg)**2+(self.position[1]-y_avg)**2+(self.position[2]-z_avg)**2)
+		# 		F1=D/hp.R
+		# 		F2=1-D/hp.R
+		# 		# F1=1
+		# 		# F2=0
+		# 	else:
+		# 		F1=1
+		# 		F2=0
+		# 	F3=0
+		# 	F4=0
 			
 		newDir=[F1*dir1[0]+F2*dir2[0]+F3*dir3[0]+F4*dir4[0],F1*dir1[1]+F2*dir2[1]+F3*dir3[1]+F4*dir4[1],F1*dir1[2]+F2*dir2[2]+F3*dir3[2]+F4*dir4[2]]
 		# if self.index==0:
@@ -253,9 +257,9 @@ class Bird:
 
 
 		self.updateAcceleration(F1,F2,F3)
-		xtmp=self.speed*self.direction[0]+self.acceleration*hp.deltaT*newDir[0]
-		ytmp=self.speed*self.direction[1]+self.acceleration*hp.deltaT*newDir[1]
-		ztmp=self.speed*self.direction[2]+self.acceleration*hp.deltaT*newDir[2]
+		xtmp=self.speed*self.direction[0]+self.acceleration*newDir[0]*0.1
+		ytmp=self.speed*self.direction[1]+self.acceleration*newDir[1]*0.1
+		ztmp=self.speed*self.direction[2]+self.acceleration*newDir[2]*0.1
 		newSpeed=math.sqrt(xtmp**2+ytmp**2+ztmp**2)
 		# if D!=0: CHANGING SPEED
 		self.direction=[xtmp/newSpeed,ytmp/newSpeed,ztmp/newSpeed]
