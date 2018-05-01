@@ -74,7 +74,7 @@ def drawbirds(listOfBirds):
 	rotateZ=0
 	copyListOfBirds = (listOfBirds)
 	while True:
-		print "drawbirds"
+		# print "drawbirds"
 		force=[]
 		angularmomentum=[]
 		power=[]
@@ -95,13 +95,33 @@ def drawbirds(listOfBirds):
 						listOfBirds[ct]=b
 						ct+=1
 				if event.key == pygame.K_p: #get physical parameters
+					forceSum1 = 0
+					forceSum2 = 0
+					forceSum3 = 0
+					PowerSum1 = 0
+					angularMomentumSum1 = 0
+					angularMomentumSum2 = 0
+					angularMomentumSum3 = 0
+					indexavg = 0
 					for b in copyListOfBirds:
 						force.append(physics.force(hp.mass,[x*b.speed for x in b.direction],b.prevVelocity,hp.deltaT))
 						angularmomentum.append(physics.angularMomentum(hp.mass,b.position,[x*b.speed for x in b.direction]))
 						power.append(physics.power(force[-1],[x*b.speed for x in b.direction]))
-					print force[0]
-					print power[0]
-					print angularmomentum[0]
+						forceSum1 = forceSum1 + force[indexavg][0]
+						forceSum2 = forceSum2 + force[indexavg][1]
+						forceSum3 = forceSum3 + force[indexavg][2]
+						angularMomentumSum1 = angularMomentumSum1 + angularmomentum[indexavg][0]
+						angularMomentumSum2 = angularMomentumSum2 + angularmomentum[indexavg][1]
+						angularMomentumSum3 = angularMomentumSum3 + angularmomentum[indexavg][2]
+						PowerSum1 = PowerSum1 + power[indexavg]
+						indexavg = indexavg + 1
+					print ("Average force X direction: " , forceSum1/indexavg)
+					print ("Average force Y direction: " , forceSum2/indexavg)
+					print ("Average force Z direction: " , forceSum3/indexavg)
+					print ("Average Power: " , PowerSum1/indexavg)
+					print ("Average angularmomentum X direction: " , angularMomentumSum1/indexavg)
+					print ("Average angularmomentum Y direction: " , angularMomentumSum2/indexavg)
+					print ("Average angularmomentum Z direction: " , angularMomentumSum3/indexavg)
 				if event.key == pygame.K_w:
 					rotateX = 5
 				if event.key == pygame.K_s:
@@ -148,6 +168,7 @@ def drawbirds(listOfBirds):
 		for r in copyListOfBirds:
 			head = r.position
 			tailCentre = (r.position[0]-22*r.direction[0],r.position[1]-22*r.direction[1],r.position[2]-22*r.direction[2])
+			tailCentre2 = (r.position[0]-44*r.direction[0],r.position[1]-44*r.direction[1],r.position[2]-44*r.direction[2])
 			tmpDir1=[]
 			tmpDir2=[]
 
@@ -168,12 +189,13 @@ def drawbirds(listOfBirds):
 			tailSq2 = (tailCentre[0]+8*tmpDir1[0],tailCentre[1]+8*tmpDir1[1],tailCentre[2]+8*tmpDir1[2])  
 			# tailSq3 = (tailCentre[0]-8*tmpDir2[0],tailCentre[1]-8*tmpDir2[1],tailCentre[2]-8*tmpDir2[2])
 			# tailSq4 = (tailCentre[0]+8*tmpDir2[0],tailCentre[1]+8*tmpDir2[1],tailCentre[2]+8*tmpDir2[2])
-			
+			# print tailCentre[0]
 			if r.pred==-1:
-				glBegin(GL_TRIANGLES)
+				glBegin(GL_QUADS)
 				glColor3fv((0,0,0))
 				glVertex3fv((int(head[0]),int(head[1]),int(head[2])))
 				glVertex3fv((int(tailSq1[0]),int(tailSq1[1]),int(tailSq1[2])))
+				glVertex3fv((int(tailCentre2[0]),int(tailCentre2[1]),int(tailCentre2[2])))
 				glVertex3fv((int(tailSq2[0]),int(tailSq2[1]),int(tailSq2[2])))
 				glEnd()
 			else:
@@ -186,7 +208,7 @@ def drawbirds(listOfBirds):
 			
 		pygame.display.flip()
 		time2 = time.time()*1000
-		# print time2-time1
+		print time2-time1
 		clock.tick(hp.fps)
 		# ch=input()
 
@@ -204,7 +226,7 @@ def updateBirds(listOfBirds,neighbours_R,neighbours_r):
 	"""This function updates the birds"""
 	while True:
 		# print os.getpid()
-		print "updateBirds"
+		# print "updateBirds"
 		force=[]
 		angularmomentum=[]
 		power=[]
@@ -233,7 +255,7 @@ def updateBirds(listOfBirds,neighbours_R,neighbours_r):
 def updateNeighbours(listOfBirds,neighbours_R,neighbours_r):
 	"""This function updates the neighbours"""
 	while True:
-		print "updateNeighbours"
+		# print "updateNeighbours"
 		copyListOfBirds=list(listOfBirds)
 		for ind in range(hp.numberOfBirds):
 			# print ind

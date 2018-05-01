@@ -38,7 +38,7 @@ z_min = x_min
 # z_max = 0 #z boundary
 # z_min = 0
 numberOfBirds = 100
-deltaT = 0.1 #small time interval
+deltaT = 0.5 #small time interval
 acc_min = 5
 acc_max = 10
 
@@ -51,4 +51,4 @@ mass=0.1
 #rendering
 window_width=2*y_max
 window_height=2*x_max
-fps=20
+fps=30
