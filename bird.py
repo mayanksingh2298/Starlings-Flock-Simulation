@@ -196,6 +196,8 @@ class Bird:
 		# 		neighbours_R.append(b)
 		# ind = min(7,len(neighbours_R))
 		# neighbours_R = neighbours_R[0:ind]
+		# if self.index==0:
+			# print neighbours_R
 		self.prevVelocity=[self.speed*self.direction[0],self.speed*self.direction[1],self.speed*self.direction[2]]
 		dir1=self.directionByOthersPosition(neighbours_R)
 		dir2=self.directionByOthersDirection(neighbours_R)

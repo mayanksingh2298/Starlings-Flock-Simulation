@@ -74,6 +74,7 @@ def drawbirds(listOfBirds):
 	rotateZ=0
 	copyListOfBirds = (listOfBirds)
 	while True:
+		print "drawbirds"
 		force=[]
 		angularmomentum=[]
 		power=[]
@@ -146,16 +147,16 @@ def drawbirds(listOfBirds):
 		time1 = time.time()*1000
 		for r in copyListOfBirds:
 			head = r.position
-			tailCentre = (r.position[0]-12*r.direction[0],r.position[1]-12*r.direction[1],r.position[2]-12*r.direction[2])
+			tailCentre = (r.position[0]-22*r.direction[0],r.position[1]-22*r.direction[1],r.position[2]-22*r.direction[2])
 			tmpDir1=[]
 			tmpDir2=[]
-			if r.direction[2]!=0:
+
+			if r.direction[1]!=0:
+				tmpDir1=[1,(-r.direction[0])/r.direction[1],0]
+			elif r.direction[2]!=0:
 				tmpDir1=[1,1,(-r.direction[0]-r.direction[1])/r.direction[2]]
-				
-			elif r.direction[1]!=0:
-				tmpDir1=[1,1,(-r.direction[0]-r.direction[2])/r.direction[1]]
 			else:
-				tmpDir1=[1,1,(-r.direction[1]-r.direction[2])/r.direction[0]]
+				tmpDir1=[(-r.direction[1])/r.direction[0],1,0]
 
 			D = math.sqrt(tmpDir1[0]**2+tmpDir1[1]**2+tmpDir1[2]**2)
 			tmpDir1=[tmpDir1[0]/D,tmpDir1[1]/D,tmpDir1[2]/D]
@@ -163,8 +164,8 @@ def drawbirds(listOfBirds):
 			D = math.sqrt(tmpDir2[0]**2+tmpDir2[1]**2+tmpDir2[2]**2)
 			tmpDir2=[tmpDir2[0]/D,tmpDir2[1]/D,tmpDir2[2]/D]
 
-			tailSq1 = (tailCentre[0]-4*tmpDir1[0],tailCentre[1]-4*tmpDir1[1],tailCentre[2]-4*tmpDir1[2])
-			tailSq2 = (tailCentre[0]+4*tmpDir1[0],tailCentre[1]+4*tmpDir1[1],tailCentre[2]+4*tmpDir1[2])  
+			tailSq1 = (tailCentre[0]-8*tmpDir1[0],tailCentre[1]-8*tmpDir1[1],tailCentre[2]-8*tmpDir1[2])
+			tailSq2 = (tailCentre[0]+8*tmpDir1[0],tailCentre[1]+8*tmpDir1[1],tailCentre[2]+8*tmpDir1[2])  
 			# tailSq3 = (tailCentre[0]-8*tmpDir2[0],tailCentre[1]-8*tmpDir2[1],tailCentre[2]-8*tmpDir2[2])
 			# tailSq4 = (tailCentre[0]+8*tmpDir2[0],tailCentre[1]+8*tmpDir2[1],tailCentre[2]+8*tmpDir2[2])
 			
@@ -203,7 +204,7 @@ def updateBirds(listOfBirds,neighbours_R,neighbours_r):
 	"""This function updates the birds"""
 	while True:
 		# print os.getpid()
-		# print "updateBirds"
+		print "updateBirds"
 		force=[]
 		angularmomentum=[]
 		power=[]
@@ -232,7 +233,7 @@ def updateBirds(listOfBirds,neighbours_R,neighbours_r):
 def updateNeighbours(listOfBirds,neighbours_R,neighbours_r):
 	"""This function updates the neighbours"""
 	while True:
-		# print "updateNeighbours"
+		print "updateNeighbours"
 		copyListOfBirds=list(listOfBirds)
 		for ind in range(hp.numberOfBirds):
 			# print ind
