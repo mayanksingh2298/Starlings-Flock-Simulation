@@ -227,9 +227,6 @@ def updateBirds(listOfBirds,neighbours_R,neighbours_r):
 	while True:
 		# print os.getpid()
 		# print "updateBirds"
-		force=[]
-		angularmomentum=[]
-		power=[]
 		copyNeighbours_R = list(neighbours_R)
 		copyNeighbours_r = list(neighbours_r)
 		copyListOfBirds=list(listOfBirds)
@@ -241,16 +238,6 @@ def updateBirds(listOfBirds,neighbours_R,neighbours_r):
 			listOfBirds[i]=b
 			i+=1
 		# pipeConnection.send(listOfBirds)
-			# force.append(physics.force(hp.mass,[x*b.speed for x in b.direction],[x*copyListOfBirds[b.index].speed for x in copyListOfBirds[b.index].direction],hp.deltaT))
-			# angularmomentum.append(physics.angularMomentum(hp.mass,b.position,[x*b.speed for x in b.direction]))
-			# power.append(physics.power(force[-1],[x*b.speed for x in b.direction]))
-		# print listOfBirds[0]
-		# print "---Force---"
-		# print force
-		# print "---angularmomentum---"
-		# print angularmomentum
-		# print "---Power---"
-		# print power
 		
 def updateNeighbours(listOfBirds,neighbours_R,neighbours_r):
 	"""This function updates the neighbours"""
