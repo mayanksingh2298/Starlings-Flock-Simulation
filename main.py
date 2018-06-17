@@ -208,7 +208,7 @@ def drawbirds(listOfBirds):
 			
 		pygame.display.flip()
 		time2 = time.time()*1000
-		print time2-time1
+		# print time2-time1
 		clock.tick(hp.fps)
 		# ch=input()
 
