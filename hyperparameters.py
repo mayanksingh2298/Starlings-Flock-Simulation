@@ -38,7 +38,7 @@ z_min = x_min
 # z_max = 0 #z boundary
 # z_min = 0
 numberOfBirds = 100
-deltaT = 0.5 #small time interval
+deltaT = 0.15#small time interval
 acc_min = 5
 acc_max = 10
 
