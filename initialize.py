@@ -1,11 +1,17 @@
+"""
+This file is used to initilize the birds
+"""
 import bird
 import hyperparameters as hp
 import random
 import math
 
 def getRandomList():
+	"""
+		generates a list of birds with random position and velocity
+	"""
 	listOfBirds = []
-	for i in xrange(hp.numberOfBirds):
+	for i in xrange(hp.numberOfBirds-hp.numberOfBirds/10):
 		pos = [random.randint(hp.x_min+hp.boundaryThreshold,hp.x_max-hp.boundaryThreshold),random.randint(hp.y_min+hp.boundaryThreshold,hp.y_max-hp.boundaryThreshold),random.randint(hp.z_min+hp.boundaryThreshold,hp.z_max-hp.boundaryThreshold)]
 		# pos[2]=0
 
@@ -30,13 +36,14 @@ def getRandomList():
 		
 		# u_z=0
 		direction = [u_x,u_y,u_z]
-
-		pred=1
-		listOfBirds.append(bird.Bird(i,pos,speed,direction,hp.acc_min,pred))
+		listOfBirds.append(bird.Bird(i,pos,speed,direction,hp.acc_min,1))
+	for i in range(hp.numberOfBirds-hp.numberOfBirds/10,hp.numberOfBirds):
+		pos = [random.randint(hp.x_min+hp.boundaryThreshold,hp.x_max-hp.boundaryThreshold),random.randint(hp.y_min+hp.boundaryThreshold,hp.y_max-hp.boundaryThreshold),random.randint(hp.z_min+hp.boundaryThreshold,hp.z_max-hp.boundaryThreshold)]
+		listOfBirds.append(bird.Bird(i,pos,0,[1,0,0],0,-1))
 
 		##setting the boundary
-	ct = bird.Bird.birdCount
-	listOfBirds.append(bird.Bird(ct,[0,0,0],0,[1,0,0],0,-1))
+	# ct = bird.Bird.birdCount
+	# listOfBirds.append(bird.Bird(ct,[0,0,0],0,[1,0,0],0,-1))
 	return listOfBirds
 
 # for i in range(hp.z_min,hp.z_max,100):

@@ -1,10 +1,23 @@
 #ADD DIRECTION CHANGE F2
+"""
+This file contains the structure of an atomic bird
+"""
 import hyperparameters as hp
 import math
 class Bird:
-	"""The structure of the atomic bird"""
+	"""This is the bird class"""
 	birdCount = 0
 	def __init__(self, ind, pos, speed, direction, acceleration, pred):
+		"""
+		This is the constructor for the bird.
+		:index: uid of bird
+		:position: coordinates of the bird
+		:speed: magnetude of bird's velocity
+		:direction: direction in which the bird is going
+		:acceleration: magnetude of bird's acceleration
+		:pred: this indicates if this object is a bird or an obstacle
+		:prevVelocity: this stores the previous velocity of bird to calculate physical parameters
+		"""
 		Bird.birdCount += 1
 		self.index=ind
 		self.position = pos
@@ -12,23 +25,24 @@ class Bird:
 		self.direction = direction
 		self.acceleration = acceleration
 		self.pred = pred
+		self.prevVelocity = direction
 
-	""" returns the bird count"""
 	def displayCount(self):
+		""" returns the bird count"""
 		return Bird.birdCount
 
-	""" these two functions help in printing the bird"""
 	def __repr__(self):
+		""" these two functions help in printing the bird"""
 		return str(self.index)+" "+str(self.pred)+" "+str(self.position)+" "+str(self.speed)+" "+str(self.acceleration)+" "+str(self.direction)
 	def __str__(self):
 		return str(self.index)+" "+str(self.pred)+" "+str(self.position)+" "+str(self.speed)+" "+str(self.acceleration)+" "+str(self.direction)
 
-	"""overload the == operator"""
 	def __eq__(self,other):
+		"""overload the == operator"""
 		return self.index==other.index
 
-	"""update position"""
 	def updatePosition(self,dt):
+		"""update position of bird using velocity"""
 		xtmp = (self.position[0]+self.speed*self.direction[0]*dt)
 		ytmp = (self.position[1]+self.speed*self.direction[1]*dt)
 		ztmp = (self.position[2]+self.speed*self.direction[2]*dt)
@@ -56,8 +70,8 @@ class Bird:
 
 
 	
-	"""update speed"""
 	def updateAcceleration(self,F1,F2,F3):
+		"""update bird's acceleration"""
 		# spd = self.speed + (hp.v_min + (hp.v_max-hp.v_min)*2*(F1+F3-0.5))*dt
 		# if spd>hp.v_max:
 		# 	self.speed = hp.v_max
@@ -73,8 +87,8 @@ class Bird:
 		# else:
 		# 	self.speed = spd
 
-	"""update direction by position of other birds"""
 	def directionByOthersPosition(self,neighboursList):
+		"""update direction by position of other birds"""
 		if len(neighboursList)!= 0:
 			x_avg = 0
 			y_avg = 0
@@ -92,8 +106,8 @@ class Bird:
 			return [(x_avg-self.position[0])/denominator,(y_avg-self.position[1])/denominator,(z_avg-self.position[2])/denominator]
 		else:
 			return self.direction
-	"""direction by other birds' direction"""
 	def directionByOthersDirection(self,neighboursList):
+		"""direction by other birds' direction"""
 		if len(neighboursList)!=0:
 			ux_avg = 0
 			uy_avg = 0
@@ -111,8 +125,8 @@ class Bird:
 		else:
 			return self.direction
 
-	"""repulsion due to very close neighbours"""
 	def repulsionByTooCloseNeighbours(self,neighboursList):
+		"""repulsion due to very close neighbours"""
 		if len(neighboursList)!=0:
 			num_x=0
 			num_y=0
@@ -137,8 +151,8 @@ class Bird:
 		else:
 			return self.direction
 
-	"""update direcection due to boundary problem"""
 	def repulsionDueToBoundary(self):
+		"""update direcection due to boundary problem"""
 		return self.direction
 		# dir_x=0
 		# dir_y=0
@@ -166,20 +180,25 @@ class Bird:
 		
 		# return [dir_x,dir_y,dir_z]
 
-	"""update considering all factors"""
-	def update(self,allBirds):
-		neighbours_R=[]
-		neighbours_r=[]
+	def update(self,neighbours_R,neighbours_r):
+		"""update considering all factors"""
+		# neighbours_R=[]
+		# neighbours_r=[]
+		# neighbours_R=neighbours_R[self.index]
+		# neighbours_r=neighbours_r[self.index]
 
-		for b in allBirds:
-			if b==self or (b.position[0]==self.position[0] and b.position[1]==self.position[1] and b.position[2]==self.position[2]):
-				continue
-			if(math.sqrt((self.position[0]-b.position[0])**2+(self.position[1]-b.position[1])**2+(self.position[2]-b.position[2])**2)<hp.r):
-				neighbours_r.append(b)
-			if(math.sqrt((self.position[0]-b.position[0])**2+(self.position[1]-b.position[1])**2+(self.position[2]-b.position[2])**2)<hp.R):
-				neighbours_R.append(b)
+		# for b in allBirds:
+		# 	if b==self or (b.position[0]==self.position[0] and b.position[1]==self.position[1] and b.position[2]==self.position[2]):
+		# 		continue
+		# 	if(math.sqrt((self.position[0]-b.position[0])**2+(self.position[1]-b.position[1])**2+(self.position[2]-b.position[2])**2)<hp.r):
+		# 		neighbours_r.append(b)
+		# 	if(math.sqrt((self.position[0]-b.position[0])**2+(self.position[1]-b.position[1])**2+(self.position[2]-b.position[2])**2)<hp.R):
+		# 		neighbours_R.append(b)
 		# ind = min(7,len(neighbours_R))
 		# neighbours_R = neighbours_R[0:ind]
+		# if self.index==0:
+			# print neighbours_R
+		self.prevVelocity=[self.speed*self.direction[0],self.speed*self.direction[1],self.speed*self.direction[2]]
 		dir1=self.directionByOthersPosition(neighbours_R)
 		dir2=self.directionByOthersDirection(neighbours_R)
 		dir3=self.repulsionByTooCloseNeighbours(neighbours_r)
@@ -188,38 +207,42 @@ class Bird:
 		F2=0
 		F3=0
 		F4=0
-		if(self.position[0]<hp.boundaryThreshold or self.position[1]<hp.boundaryThreshold or self.position[2]<hp.boundaryThreshold or self.position[0]>hp.x_max-hp.boundaryThreshold or self.position[1]>hp.y_max-hp.boundaryThreshold or self.position[2]>hp.z_max-hp.boundaryThreshold):
-			F1=0
-			F2=0
-			F3=0
-			F4=1
-		elif(len(neighbours_r)!=0):
-			F1=hp.F1whentooclose
-			F2=hp.F2whentooclose
-			F3=hp.F3whentooclose
-			F4=0
-		else:
-			if(len(neighbours_R)!=0):
-				x_avg = 0
-				y_avg = 0
-				z_avg = 0
-				for b in neighbours_R:
-					x_avg += b.position[0]
-					y_avg += b.position[1]
-					z_avg += b.position[2]
-				x_avg/=float(len(neighbours_R))
-				y_avg/=float(len(neighbours_R))
-				z_avg/=float(len(neighbours_R))
-				D=math.sqrt((self.position[0]-x_avg)**2+(self.position[1]-y_avg)**2+(self.position[2]-z_avg)**2)
-				F1=D/hp.R
-				F2=1-D/hp.R
-				# F1=1
-				# F2=0
-			else:
-				F1=1
-				F2=0
-			F3=0
-			F4=0
+		F1=1
+		F2=1
+		F3=1.5
+
+		# if(self.position[0]<hp.boundaryThreshold or self.position[1]<hp.boundaryThreshold or self.position[2]<hp.boundaryThreshold or self.position[0]>hp.x_max-hp.boundaryThreshold or self.position[1]>hp.y_max-hp.boundaryThreshold or self.position[2]>hp.z_max-hp.boundaryThreshold):
+		# 	F1=0
+		# 	F2=0
+		# 	F3=0
+		# 	F4=1
+		# elif(len(neighbours_r)!=0):
+		# 	F1=hp.F1whentooclose
+		# 	F2=hp.F2whentooclose
+		# 	F3=hp.F3whentooclose
+		# 	F4=0
+		# else:
+		# 	if(len(neighbours_R)!=0):
+		# 		x_avg = 0
+		# 		y_avg = 0
+		# 		z_avg = 0
+		# 		for b in neighbours_R:
+		# 			x_avg += b.position[0]
+		# 			y_avg += b.position[1]
+		# 			z_avg += b.position[2]
+		# 		x_avg/=float(len(neighbours_R))
+		# 		y_avg/=float(len(neighbours_R))
+		# 		z_avg/=float(len(neighbours_R))
+		# 		D=math.sqrt((self.position[0]-x_avg)**2+(self.position[1]-y_avg)**2+(self.position[2]-z_avg)**2)
+		# 		F1=D/hp.R
+		# 		F2=1-D/hp.R
+		# 		# F1=1
+		# 		# F2=0
+		# 	else:
+		# 		F1=1
+		# 		F2=0
+		# 	F3=0
+		# 	F4=0
 			
 		newDir=[F1*dir1[0]+F2*dir2[0]+F3*dir3[0]+F4*dir4[0],F1*dir1[1]+F2*dir2[1]+F3*dir3[1]+F4*dir4[1],F1*dir1[2]+F2*dir2[2]+F3*dir3[2]+F4*dir4[2]]
 		# if self.index==0:
@@ -234,9 +257,9 @@ class Bird:
 
 
 		self.updateAcceleration(F1,F2,F3)
-		xtmp=self.speed*self.direction[0]+self.acceleration*hp.deltaT*newDir[0]
-		ytmp=self.speed*self.direction[1]+self.acceleration*hp.deltaT*newDir[1]
-		ztmp=self.speed*self.direction[2]+self.acceleration*hp.deltaT*newDir[2]
+		xtmp=self.speed*self.direction[0]+self.acceleration*newDir[0]*0.1
+		ytmp=self.speed*self.direction[1]+self.acceleration*newDir[1]*0.1
+		ztmp=self.speed*self.direction[2]+self.acceleration*newDir[2]*0.1
 		newSpeed=math.sqrt(xtmp**2+ytmp**2+ztmp**2)
 		# if D!=0: CHANGING SPEED
 		self.direction=[xtmp/newSpeed,ytmp/newSpeed,ztmp/newSpeed]

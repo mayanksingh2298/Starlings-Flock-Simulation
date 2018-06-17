@@ -1,0 +1,256 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: package OpenGL</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>OpenGL</strong></big></big> (version 3.1.0)</font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/mayanksingh2298/IIT_Course/sem4/cop290/Projects/COP290_Starlings/venv/local/lib/python2.7/site-packages/OpenGL/__init__.py">/home/mayanksingh2298/IIT_Course/sem4/cop290/Projects/COP290_Starlings/venv/local/lib/python2.7/site-packages/OpenGL/__init__.py</a></font></td></tr></table>
+    <p><tt>ctypes-based&nbsp;OpenGL&nbsp;wrapper&nbsp;for&nbsp;Python<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;the&nbsp;PyOpenGL&nbsp;3.x&nbsp;tree,&nbsp;it&nbsp;attempts&nbsp;to&nbsp;provide<br>
+a&nbsp;largely&nbsp;compatible&nbsp;API&nbsp;for&nbsp;code&nbsp;written&nbsp;with&nbsp;the<br>
+PyOpenGL&nbsp;2.x&nbsp;series&nbsp;using&nbsp;the&nbsp;ctypes&nbsp;foreign&nbsp;function<br>
+interface&nbsp;system.<br>
+&nbsp;<br>
+Configuration&nbsp;Variables:<br>
+&nbsp;<br>
+There&nbsp;are&nbsp;a&nbsp;few&nbsp;configuration&nbsp;variables&nbsp;in&nbsp;this&nbsp;top-level<br>
+module.&nbsp;&nbsp;Applications&nbsp;should&nbsp;be&nbsp;the&nbsp;only&nbsp;code&nbsp;that&nbsp;tweaks<br>
+these&nbsp;variables,&nbsp;mid-level&nbsp;libraries&nbsp;should&nbsp;not&nbsp;take&nbsp;it<br>
+upon&nbsp;themselves&nbsp;to&nbsp;disable/enable&nbsp;features&nbsp;at&nbsp;this&nbsp;level.<br>
+The&nbsp;implication&nbsp;there&nbsp;is&nbsp;that&nbsp;your&nbsp;library&nbsp;code&nbsp;should&nbsp;be<br>
+able&nbsp;to&nbsp;work&nbsp;with&nbsp;any&nbsp;of&nbsp;the&nbsp;valid&nbsp;configurations&nbsp;available<br>
+with&nbsp;these&nbsp;sets&nbsp;of&nbsp;flags.<br>
+&nbsp;<br>
+Further,&nbsp;once&nbsp;any&nbsp;entry&nbsp;point&nbsp;has&nbsp;been&nbsp;loaded,&nbsp;the&nbsp;variables&nbsp;<br>
+can&nbsp;no&nbsp;longer&nbsp;be&nbsp;updated.&nbsp;&nbsp;The&nbsp;OpenGL._confligflags&nbsp;module&nbsp;<br>
+imports&nbsp;the&nbsp;variables&nbsp;from&nbsp;this&nbsp;location,&nbsp;and&nbsp;once&nbsp;that&nbsp;<br>
+import&nbsp;occurs&nbsp;the&nbsp;flags&nbsp;should&nbsp;no&nbsp;longer&nbsp;be&nbsp;changed.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ERROR_CHECKING&nbsp;--&nbsp;if&nbsp;set&nbsp;to&nbsp;a&nbsp;False&nbsp;value&nbsp;before<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;importing&nbsp;any&nbsp;OpenGL.*&nbsp;libraries&nbsp;will&nbsp;completely<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;disable&nbsp;error-checking.&nbsp;&nbsp;This&nbsp;can&nbsp;dramatically<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;improve&nbsp;performance,&nbsp;but&nbsp;makes&nbsp;debugging&nbsp;far<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;harder.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;is&nbsp;intended&nbsp;to&nbsp;be&nbsp;turned&nbsp;off&nbsp;*only*&nbsp;in&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;production&nbsp;environment&nbsp;where&nbsp;you&nbsp;*know*&nbsp;that<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;your&nbsp;code&nbsp;is&nbsp;entirely&nbsp;free&nbsp;of&nbsp;situations&nbsp;where&nbsp;you<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;exception-handling&nbsp;to&nbsp;handle&nbsp;error&nbsp;conditions,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.e.&nbsp;where&nbsp;you&nbsp;are&nbsp;explicitly&nbsp;checking&nbsp;for&nbsp;errors<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;everywhere&nbsp;they&nbsp;can&nbsp;occur&nbsp;in&nbsp;your&nbsp;code.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default:&nbsp;True<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ERROR_LOGGING&nbsp;--&nbsp;If&nbsp;True,&nbsp;then&nbsp;wrap&nbsp;array-handler<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;functions&nbsp;with&nbsp;&nbsp;error-logging&nbsp;operations&nbsp;so&nbsp;that&nbsp;all&nbsp;exceptions<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;be&nbsp;reported&nbsp;to&nbsp;log&nbsp;objects&nbsp;in&nbsp;OpenGL.logs,&nbsp;note&nbsp;that<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;means&nbsp;you&nbsp;will&nbsp;get&nbsp;lots&nbsp;of&nbsp;error&nbsp;logging&nbsp;whenever&nbsp;you<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;have&nbsp;code&nbsp;that&nbsp;tests&nbsp;by&nbsp;trying&nbsp;something&nbsp;and&nbsp;catching&nbsp;an<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;error,&nbsp;this&nbsp;is&nbsp;intended&nbsp;to&nbsp;be&nbsp;turned&nbsp;on&nbsp;only&nbsp;during<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;development&nbsp;so&nbsp;that&nbsp;you&nbsp;can&nbsp;see&nbsp;why&nbsp;something&nbsp;is&nbsp;failing.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Errors&nbsp;are&nbsp;normally&nbsp;logged&nbsp;to&nbsp;the&nbsp;OpenGL.errors&nbsp;logger.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Only&nbsp;triggers&nbsp;if&nbsp;ERROR_CHECKING&nbsp;is&nbsp;True<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default:&nbsp;False<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ERROR_ON_COPY&nbsp;--&nbsp;if&nbsp;set&nbsp;to&nbsp;a&nbsp;True&nbsp;value&nbsp;before<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;importing&nbsp;the&nbsp;numpy/lists&nbsp;support&nbsp;modules,&nbsp;will<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cause&nbsp;array&nbsp;operations&nbsp;to&nbsp;raise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OpenGL.error.CopyError&nbsp;if&nbsp;the&nbsp;operation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;would&nbsp;cause&nbsp;a&nbsp;data-copy&nbsp;in&nbsp;order&nbsp;to&nbsp;make&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;passed&nbsp;data-type&nbsp;match&nbsp;the&nbsp;target&nbsp;data-type.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;effectively&nbsp;disables&nbsp;all&nbsp;list/tuple&nbsp;array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;support,&nbsp;as&nbsp;they&nbsp;are&nbsp;inherently&nbsp;copy-based.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;feature&nbsp;allows&nbsp;for&nbsp;optimisation&nbsp;of&nbsp;your<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application.&nbsp;&nbsp;It&nbsp;should&nbsp;only&nbsp;be&nbsp;enabled&nbsp;during<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;testing&nbsp;stages&nbsp;to&nbsp;prevent&nbsp;raising&nbsp;errors&nbsp;on<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;recoverable&nbsp;conditions&nbsp;at&nbsp;run-time.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default:&nbsp;False<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;CONTEXT_CHECKING&nbsp;--&nbsp;if&nbsp;set&nbsp;to&nbsp;True,&nbsp;PyOpenGL&nbsp;will&nbsp;wrap<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*every*&nbsp;GL&nbsp;and&nbsp;GLU&nbsp;call&nbsp;with&nbsp;a&nbsp;check&nbsp;to&nbsp;see&nbsp;if&nbsp;there<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;a&nbsp;valid&nbsp;context.&nbsp;&nbsp;If&nbsp;there&nbsp;is&nbsp;no&nbsp;valid&nbsp;context<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;will&nbsp;throw&nbsp;OpenGL.errors.NoContext.&nbsp;&nbsp;This&nbsp;is&nbsp;an<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*extremely*&nbsp;slow&nbsp;check&nbsp;and&nbsp;is&nbsp;not&nbsp;enabled&nbsp;by&nbsp;default,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;intended&nbsp;to&nbsp;be&nbsp;enabled&nbsp;in&nbsp;order&nbsp;to&nbsp;track&nbsp;down&nbsp;(wrong)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code&nbsp;that&nbsp;uses&nbsp;GL/GLU&nbsp;entry&nbsp;points&nbsp;before&nbsp;the&nbsp;context<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;has&nbsp;been&nbsp;initialized&nbsp;(something&nbsp;later&nbsp;Linux&nbsp;GLs&nbsp;are<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;very&nbsp;picky&nbsp;about).<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default:&nbsp;False<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;STORE_POINTERS&nbsp;--&nbsp;if&nbsp;set&nbsp;to&nbsp;True,&nbsp;PyOpenGL&nbsp;array&nbsp;operations<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;attempt&nbsp;to&nbsp;store&nbsp;references&nbsp;to&nbsp;pointers&nbsp;which&nbsp;are<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;being&nbsp;passed&nbsp;in&nbsp;order&nbsp;to&nbsp;prevent&nbsp;memory-access&nbsp;failures<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;the&nbsp;pointed-to-object&nbsp;goes&nbsp;out&nbsp;of&nbsp;scope.&nbsp;&nbsp;This<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;behaviour&nbsp;is&nbsp;primarily&nbsp;intended&nbsp;to&nbsp;allow&nbsp;temporary&nbsp;arrays<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;be&nbsp;created&nbsp;without&nbsp;causing&nbsp;memory&nbsp;errors,&nbsp;thus&nbsp;it&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;trading&nbsp;off&nbsp;performance&nbsp;for&nbsp;safety.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;use&nbsp;this&nbsp;flag&nbsp;effectively,&nbsp;you&nbsp;will&nbsp;want&nbsp;to&nbsp;first&nbsp;set<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ERROR_ON_COPY&nbsp;to&nbsp;True&nbsp;and&nbsp;eliminate&nbsp;all&nbsp;cases&nbsp;where&nbsp;you<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;are&nbsp;copying&nbsp;arrays.&nbsp;&nbsp;Copied&nbsp;arrays&nbsp;*will*&nbsp;segfault&nbsp;your<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application&nbsp;deep&nbsp;within&nbsp;the&nbsp;GL&nbsp;if&nbsp;you&nbsp;disable&nbsp;this&nbsp;feature!<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Once&nbsp;you&nbsp;have&nbsp;eliminated&nbsp;all&nbsp;copying&nbsp;of&nbsp;arrays&nbsp;in&nbsp;your<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application,&nbsp;you&nbsp;will&nbsp;further&nbsp;need&nbsp;to&nbsp;be&nbsp;sure&nbsp;that&nbsp;all<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arrays&nbsp;which&nbsp;are&nbsp;passed&nbsp;to&nbsp;the&nbsp;GL&nbsp;are&nbsp;stored&nbsp;for&nbsp;at&nbsp;least<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;time&nbsp;period&nbsp;for&nbsp;which&nbsp;they&nbsp;are&nbsp;active&nbsp;in&nbsp;the&nbsp;GL.&nbsp;&nbsp;That<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is,&nbsp;you&nbsp;must&nbsp;be&nbsp;sure&nbsp;that&nbsp;your&nbsp;array&nbsp;objects&nbsp;live&nbsp;at&nbsp;least<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;until&nbsp;they&nbsp;are&nbsp;no&nbsp;longer&nbsp;bound&nbsp;in&nbsp;the&nbsp;GL.&nbsp;&nbsp;This&nbsp;is&nbsp;something<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;you&nbsp;need&nbsp;to&nbsp;confirm&nbsp;by&nbsp;thinking&nbsp;about&nbsp;your&nbsp;application's<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;structure.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When&nbsp;you&nbsp;are&nbsp;sure&nbsp;your&nbsp;arrays&nbsp;won't&nbsp;cause&nbsp;seg-faults,&nbsp;you<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can&nbsp;set&nbsp;STORE_POINTERS=False&nbsp;in&nbsp;your&nbsp;application&nbsp;and&nbsp;enjoy<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;(slight)&nbsp;speed&nbsp;up.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note:&nbsp;this&nbsp;flag&nbsp;is&nbsp;*only*&nbsp;observed&nbsp;when&nbsp;ERROR_ON_COPY&nbsp;==&nbsp;True,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;safety&nbsp;measure&nbsp;to&nbsp;prevent&nbsp;pointless&nbsp;segfaults<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default:&nbsp;True<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;WARN_ON_FORMAT_UNAVAILABLE&nbsp;--&nbsp;If&nbsp;True,&nbsp;generates<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logging-module&nbsp;warn-level&nbsp;events&nbsp;when&nbsp;a&nbsp;FormatHandler<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;plugin&nbsp;is&nbsp;not&nbsp;loadable&nbsp;(with&nbsp;traceback).<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default:&nbsp;False<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;FULL_LOGGING&nbsp;--&nbsp;If&nbsp;True,&nbsp;then&nbsp;wrap&nbsp;functions&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logging&nbsp;operations&nbsp;which&nbsp;reports&nbsp;each&nbsp;call&nbsp;along&nbsp;with&nbsp;its<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arguments&nbsp;to&nbsp;&nbsp;the&nbsp;OpenGL.calltrace&nbsp;logger&nbsp;at&nbsp;the&nbsp;INFO<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level.&nbsp;&nbsp;This&nbsp;is&nbsp;*extremely*&nbsp;slow.&nbsp;&nbsp;You&nbsp;should&nbsp;*not*&nbsp;enable<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;in&nbsp;production&nbsp;code!<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You&nbsp;will&nbsp;need&nbsp;to&nbsp;have&nbsp;a&nbsp;&nbsp;logging&nbsp;configuration&nbsp;(e.g.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logging.basicConfig()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;call&nbsp;&nbsp;in&nbsp;your&nbsp;top-level&nbsp;script&nbsp;to&nbsp;see&nbsp;the&nbsp;results&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logging.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default:&nbsp;False<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ALLOW_NUMPY_SCALARS&nbsp;--&nbsp;if&nbsp;True,&nbsp;we&nbsp;will&nbsp;wrap<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;all&nbsp;GLint/GLfloat&nbsp;calls&nbsp;conversions&nbsp;with&nbsp;wrappers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;that&nbsp;allow&nbsp;for&nbsp;passing&nbsp;numpy&nbsp;scalar&nbsp;values.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note&nbsp;that&nbsp;this&nbsp;is&nbsp;experimental,&nbsp;*not*&nbsp;reliable,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;very&nbsp;slow!<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note&nbsp;that&nbsp;byte/char&nbsp;types&nbsp;are&nbsp;not&nbsp;wrapped.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default:&nbsp;False<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;UNSIGNED_BYTE_IMAGES_AS_STRING&nbsp;--&nbsp;if&nbsp;True,&nbsp;we&nbsp;will&nbsp;return<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GL_UNSIGNED_BYTE&nbsp;image-data&nbsp;as&nbsp;strings,&nbsp;instead&nbsp;of&nbsp;arrays<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;glReadPixels&nbsp;and&nbsp;glGetTexImage<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default:&nbsp;True<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;FORWARD_COMPATIBLE_ONLY&nbsp;--&nbsp;only&nbsp;include&nbsp;OpenGL&nbsp;3.1&nbsp;compatible<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entry&nbsp;points.&nbsp;&nbsp;Note&nbsp;that&nbsp;this&nbsp;will&nbsp;generally&nbsp;break&nbsp;most<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PyOpenGL&nbsp;code&nbsp;that&nbsp;hasn't&nbsp;been&nbsp;explicitly&nbsp;made&nbsp;"legacy&nbsp;free"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;via&nbsp;a&nbsp;significant&nbsp;rewrite.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default:&nbsp;False<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SIZE_1_ARRAY_UNPACK&nbsp;--&nbsp;if&nbsp;True,&nbsp;unpack&nbsp;size-1&nbsp;arrays&nbsp;to&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scalar&nbsp;values,&nbsp;as&nbsp;done&nbsp;in&nbsp;PyOpenGL&nbsp;1.5&nbsp;-&gt;&nbsp;3.0.0,&nbsp;that&nbsp;is,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;a&nbsp;glGenList(&nbsp;1&nbsp;)&nbsp;is&nbsp;done,&nbsp;return&nbsp;a&nbsp;uint&nbsp;rather&nbsp;than<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;an&nbsp;array&nbsp;of&nbsp;uints.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default:&nbsp;True<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;USE_ACCELERATE&nbsp;--&nbsp;if&nbsp;True,&nbsp;attempt&nbsp;to&nbsp;use&nbsp;the&nbsp;OpenGL_accelerate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;package&nbsp;to&nbsp;provide&nbsp;Cython-coded&nbsp;accelerators&nbsp;for&nbsp;core&nbsp;wrapping<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operations.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default:&nbsp;True<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;MODULE_ANNOTATIONS&nbsp;--&nbsp;if&nbsp;True,&nbsp;attempt&nbsp;to&nbsp;annotate&nbsp;alternates()&nbsp;and&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;constants&nbsp;to&nbsp;track&nbsp;in&nbsp;which&nbsp;module&nbsp;they&nbsp;are&nbsp;defined&nbsp;(only&nbsp;useful&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;the&nbsp;documentation-generation&nbsp;passes,&nbsp;really).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default:&nbsp;False</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Package Contents</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="OpenGL.AGL.html"><strong>AGL</strong>&nbsp;(package)</a><br>
+<a href="OpenGL.EGL.html"><strong>EGL</strong>&nbsp;(package)</a><br>
+<a href="OpenGL.GL.html"><strong>GL</strong>&nbsp;(package)</a><br>
+<a href="OpenGL.GLE.html"><strong>GLE</strong>&nbsp;(package)</a><br>
+<a href="OpenGL.GLES1.html"><strong>GLES1</strong>&nbsp;(package)</a><br>
+<a href="OpenGL.GLES2.html"><strong>GLES2</strong>&nbsp;(package)</a><br>
+<a href="OpenGL.GLES3.html"><strong>GLES3</strong>&nbsp;(package)</a><br>
+<a href="OpenGL.GLU.html"><strong>GLU</strong>&nbsp;(package)</a><br>
+<a href="OpenGL.GLUT.html"><strong>GLUT</strong>&nbsp;(package)</a><br>
+</td><td width="25%" valign=top><a href="OpenGL.GLX.html"><strong>GLX</strong>&nbsp;(package)</a><br>
+<a href="OpenGL.Tk.html"><strong>Tk</strong>&nbsp;(package)</a><br>
+<a href="OpenGL.WGL.html"><strong>WGL</strong>&nbsp;(package)</a><br>
+<a href="OpenGL._bytes.html">_bytes</a><br>
+<a href="OpenGL._configflags.html">_configflags</a><br>
+<a href="OpenGL._null.html">_null</a><br>
+<a href="OpenGL._opaque.html">_opaque</a><br>
+<a href="OpenGL.acceleratesupport.html">acceleratesupport</a><br>
+<a href="OpenGL.arrays.html"><strong>arrays</strong>&nbsp;(package)</a><br>
+</td><td width="25%" valign=top><a href="OpenGL.constant.html">constant</a><br>
+<a href="OpenGL.constants.html">constants</a><br>
+<a href="OpenGL.contextdata.html">contextdata</a><br>
+<a href="OpenGL.converters.html">converters</a><br>
+<a href="OpenGL.error.html">error</a><br>
+<a href="OpenGL.extensions.html">extensions</a><br>
+<a href="OpenGL.images.html">images</a><br>
+<a href="OpenGL.latebind.html">latebind</a><br>
+<a href="OpenGL.lazywrapper.html">lazywrapper</a><br>
+</td><td width="25%" valign=top><a href="OpenGL.logs.html">logs</a><br>
+<a href="OpenGL.osmesa.html"><strong>osmesa</strong>&nbsp;(package)</a><br>
+<a href="OpenGL.platform.html"><strong>platform</strong>&nbsp;(package)</a><br>
+<a href="OpenGL.plugins.html">plugins</a><br>
+<a href="OpenGL.raw.html"><strong>raw</strong>&nbsp;(package)</a><br>
+<a href="OpenGL.version.html">version</a><br>
+<a href="OpenGL.wrapper.html">wrapper</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-environ_key"><strong>environ_key</strong></a>(name, default)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ALLOW_NUMPY_SCALARS</strong> = False<br>
+<strong>ARRAY_SIZE_CHECKING</strong> = True<br>
+<strong>CONTEXT_CHECKING</strong> = False<br>
+<strong>ERROR_CHECKING</strong> = True<br>
+<strong>ERROR_LOGGING</strong> = False<br>
+<strong>ERROR_ON_COPY</strong> = False<br>
+<strong>FORWARD_COMPATIBLE_ONLY</strong> = False<br>
+<strong>FULL_LOGGING</strong> = False<br>
+<strong>MODULE_ANNOTATIONS</strong> = False<br>
+<strong>SIZE_1_ARRAY_UNPACK</strong> = True<br>
+<strong>STORE_POINTERS</strong> = True<br>
+<strong>UNSIGNED_BYTE_IMAGES_AS_STRING</strong> = True<br>
+<strong>USE_ACCELERATE</strong> = True<br>
+<strong>WARN_ON_FORMAT_UNAVAILABLE</strong> = False<br>
+<strong>__version__</strong> = '3.1.0'</td></tr></table>
+</body></html>

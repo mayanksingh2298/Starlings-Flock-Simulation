@@ -1,0 +1,315 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: package multiprocessing</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>multiprocessing</strong></big></big> (version 0.70a1)</font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/lib/python2.7/multiprocessing/__init__.py">/usr/lib/python2.7/multiprocessing/__init__.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;Package&nbsp;analogous&nbsp;to&nbsp;'threading.py'&nbsp;but&nbsp;using&nbsp;processes<br>
+#<br>
+#&nbsp;multiprocessing/__init__.py<br>
+#<br>
+#&nbsp;This&nbsp;package&nbsp;is&nbsp;intended&nbsp;to&nbsp;duplicate&nbsp;the&nbsp;functionality&nbsp;(and&nbsp;much&nbsp;of<br>
+#&nbsp;the&nbsp;API)&nbsp;of&nbsp;threading.py&nbsp;but&nbsp;uses&nbsp;processes&nbsp;instead&nbsp;of&nbsp;threads.&nbsp;&nbsp;A<br>
+#&nbsp;subpackage&nbsp;'multiprocessing.dummy'&nbsp;has&nbsp;the&nbsp;same&nbsp;API&nbsp;but&nbsp;is&nbsp;a&nbsp;simple<br>
+#&nbsp;wrapper&nbsp;for&nbsp;'threading'.<br>
+#<br>
+#&nbsp;Try&nbsp;calling&nbsp;`multiprocessing.doc.main()`&nbsp;to&nbsp;read&nbsp;the&nbsp;html<br>
+#&nbsp;documentation&nbsp;in&nbsp;a&nbsp;webbrowser.<br>
+#<br>
+#<br>
+#&nbsp;Copyright&nbsp;(c)&nbsp;2006-2008,&nbsp;R&nbsp;Oudkerk<br>
+#&nbsp;All&nbsp;rights&nbsp;reserved.<br>
+#<br>
+#&nbsp;Redistribution&nbsp;and&nbsp;use&nbsp;in&nbsp;source&nbsp;and&nbsp;binary&nbsp;forms,&nbsp;with&nbsp;or&nbsp;without<br>
+#&nbsp;modification,&nbsp;are&nbsp;permitted&nbsp;provided&nbsp;that&nbsp;the&nbsp;following&nbsp;conditions<br>
+#&nbsp;are&nbsp;met:<br>
+#<br>
+#&nbsp;1.&nbsp;Redistributions&nbsp;of&nbsp;source&nbsp;code&nbsp;must&nbsp;retain&nbsp;the&nbsp;above&nbsp;copyright<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;notice,&nbsp;this&nbsp;list&nbsp;of&nbsp;conditions&nbsp;and&nbsp;the&nbsp;following&nbsp;disclaimer.<br>
+#&nbsp;2.&nbsp;Redistributions&nbsp;in&nbsp;binary&nbsp;form&nbsp;must&nbsp;reproduce&nbsp;the&nbsp;above&nbsp;copyright<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;notice,&nbsp;this&nbsp;list&nbsp;of&nbsp;conditions&nbsp;and&nbsp;the&nbsp;following&nbsp;disclaimer&nbsp;in&nbsp;the<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;documentation&nbsp;and/or&nbsp;other&nbsp;materials&nbsp;provided&nbsp;with&nbsp;the&nbsp;distribution.<br>
+#&nbsp;3.&nbsp;Neither&nbsp;the&nbsp;name&nbsp;of&nbsp;author&nbsp;nor&nbsp;the&nbsp;names&nbsp;of&nbsp;any&nbsp;contributors&nbsp;may&nbsp;be<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;used&nbsp;to&nbsp;endorse&nbsp;or&nbsp;promote&nbsp;products&nbsp;derived&nbsp;from&nbsp;this&nbsp;software<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;without&nbsp;specific&nbsp;prior&nbsp;written&nbsp;permission.<br>
+#<br>
+#&nbsp;THIS&nbsp;SOFTWARE&nbsp;IS&nbsp;PROVIDED&nbsp;BY&nbsp;THE&nbsp;AUTHOR&nbsp;AND&nbsp;CONTRIBUTORS&nbsp;"AS&nbsp;IS"&nbsp;AND<br>
+#&nbsp;ANY&nbsp;EXPRESS&nbsp;OR&nbsp;IMPLIED&nbsp;WARRANTIES,&nbsp;INCLUDING,&nbsp;BUT&nbsp;NOT&nbsp;LIMITED&nbsp;TO,&nbsp;THE<br>
+#&nbsp;IMPLIED&nbsp;WARRANTIES&nbsp;OF&nbsp;MERCHANTABILITY&nbsp;AND&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE<br>
+#&nbsp;ARE&nbsp;DISCLAIMED.&nbsp;&nbsp;IN&nbsp;NO&nbsp;EVENT&nbsp;SHALL&nbsp;THE&nbsp;AUTHOR&nbsp;OR&nbsp;CONTRIBUTORS&nbsp;BE&nbsp;LIABLE<br>
+#&nbsp;FOR&nbsp;ANY&nbsp;DIRECT,&nbsp;INDIRECT,&nbsp;INCIDENTAL,&nbsp;SPECIAL,&nbsp;EXEMPLARY,&nbsp;OR&nbsp;CONSEQUENTIAL<br>
+#&nbsp;DAMAGES&nbsp;(INCLUDING,&nbsp;BUT&nbsp;NOT&nbsp;LIMITED&nbsp;TO,&nbsp;PROCUREMENT&nbsp;OF&nbsp;SUBSTITUTE&nbsp;GOODS<br>
+#&nbsp;OR&nbsp;SERVICES;&nbsp;LOSS&nbsp;OF&nbsp;USE,&nbsp;DATA,&nbsp;OR&nbsp;PROFITS;&nbsp;OR&nbsp;BUSINESS&nbsp;INTERRUPTION)<br>
+#&nbsp;HOWEVER&nbsp;CAUSED&nbsp;AND&nbsp;ON&nbsp;ANY&nbsp;THEORY&nbsp;OF&nbsp;LIABILITY,&nbsp;WHETHER&nbsp;IN&nbsp;CONTRACT,&nbsp;STRICT<br>
+#&nbsp;LIABILITY,&nbsp;OR&nbsp;TORT&nbsp;(INCLUDING&nbsp;NEGLIGENCE&nbsp;OR&nbsp;OTHERWISE)&nbsp;ARISING&nbsp;IN&nbsp;ANY&nbsp;WAY<br>
+#&nbsp;OUT&nbsp;OF&nbsp;THE&nbsp;USE&nbsp;OF&nbsp;THIS&nbsp;SOFTWARE,&nbsp;EVEN&nbsp;IF&nbsp;ADVISED&nbsp;OF&nbsp;THE&nbsp;POSSIBILITY&nbsp;OF<br>
+#&nbsp;SUCH&nbsp;DAMAGE.<br>
+#</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Package Contents</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="multiprocessing.connection.html">connection</a><br>
+<a href="multiprocessing.dummy.html"><strong>dummy</strong>&nbsp;(package)</a><br>
+<a href="multiprocessing.forking.html">forking</a><br>
+</td><td width="25%" valign=top><a href="multiprocessing.heap.html">heap</a><br>
+<a href="multiprocessing.managers.html">managers</a><br>
+<a href="multiprocessing.pool.html">pool</a><br>
+</td><td width="25%" valign=top><a href="multiprocessing.process.html">process</a><br>
+<a href="multiprocessing.queues.html">queues</a><br>
+<a href="multiprocessing.reduction.html">reduction</a><br>
+</td><td width="25%" valign=top><a href="multiprocessing.sharedctypes.html">sharedctypes</a><br>
+<a href="multiprocessing.synchronize.html">synchronize</a><br>
+<a href="multiprocessing.util.html">util</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="multiprocessing.process.html#Process">multiprocessing.process.Process</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="multiprocessing.html#ProcessError">ProcessError</a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="multiprocessing.html#BufferTooShort">BufferTooShort</a>
+</font></dt><dt><font face="helvetica, arial"><a href="multiprocessing.html#TimeoutError">TimeoutError</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BufferTooShort">class <strong>BufferTooShort</strong></a>(<a href="multiprocessing.html#ProcessError">ProcessError</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="multiprocessing.html#BufferTooShort">BufferTooShort</a></dd>
+<dd><a href="multiprocessing.html#ProcessError">ProcessError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors inherited from <a href="multiprocessing.html#ProcessError">ProcessError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="BufferTooShort-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#BufferTooShort-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;help(type(x))&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#BufferTooShort-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="BufferTooShort-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#BufferTooShort-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="BufferTooShort-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#BufferTooShort-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="BufferTooShort-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#BufferTooShort-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="BufferTooShort-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#BufferTooShort-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="BufferTooShort-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BufferTooShort-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#BufferTooShort-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="BufferTooShort-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#BufferTooShort-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="BufferTooShort-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BufferTooShort-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#BufferTooShort-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<dl><dt><a name="BufferTooShort-__unicode__"><strong>__unicode__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Process">class <strong>Process</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Process">Process</a>&nbsp;objects&nbsp;represent&nbsp;activity&nbsp;that&nbsp;is&nbsp;run&nbsp;in&nbsp;a&nbsp;separate&nbsp;process<br>
+&nbsp;<br>
+The&nbsp;class&nbsp;is&nbsp;analagous&nbsp;to&nbsp;`threading.Thread`<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Process-__init__"><strong>__init__</strong></a>(self, group<font color="#909090">=None</font>, target<font color="#909090">=None</font>, name<font color="#909090">=None</font>, args<font color="#909090">=()</font>, kwargs<font color="#909090">={}</font>)</dt></dl>
+
+<dl><dt><a name="Process-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Process-is_alive"><strong>is_alive</strong></a>(self)</dt><dd><tt>Return&nbsp;whether&nbsp;process&nbsp;is&nbsp;alive</tt></dd></dl>
+
+<dl><dt><a name="Process-join"><strong>join</strong></a>(self, timeout<font color="#909090">=None</font>)</dt><dd><tt>Wait&nbsp;until&nbsp;child&nbsp;process&nbsp;terminates</tt></dd></dl>
+
+<dl><dt><a name="Process-run"><strong>run</strong></a>(self)</dt><dd><tt>Method&nbsp;to&nbsp;be&nbsp;run&nbsp;in&nbsp;sub-process;&nbsp;can&nbsp;be&nbsp;overridden&nbsp;in&nbsp;sub-class</tt></dd></dl>
+
+<dl><dt><a name="Process-start"><strong>start</strong></a>(self)</dt><dd><tt>Start&nbsp;child&nbsp;process</tt></dd></dl>
+
+<dl><dt><a name="Process-terminate"><strong>terminate</strong></a>(self)</dt><dd><tt>Terminate&nbsp;process;&nbsp;sends&nbsp;SIGTERM&nbsp;signal&nbsp;or&nbsp;uses&nbsp;TerminateProcess()</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>authkey</strong></dt>
+</dl>
+<dl><dt><strong>daemon</strong></dt>
+<dd><tt>Return&nbsp;whether&nbsp;process&nbsp;is&nbsp;a&nbsp;daemon</tt></dd>
+</dl>
+<dl><dt><strong>exitcode</strong></dt>
+<dd><tt>Return&nbsp;exit&nbsp;code&nbsp;of&nbsp;process&nbsp;or&nbsp;`None`&nbsp;if&nbsp;it&nbsp;has&nbsp;yet&nbsp;to&nbsp;stop</tt></dd>
+</dl>
+<dl><dt><strong>ident</strong></dt>
+<dd><tt>Return&nbsp;identifier&nbsp;(PID)&nbsp;of&nbsp;process&nbsp;or&nbsp;`None`&nbsp;if&nbsp;it&nbsp;has&nbsp;yet&nbsp;to&nbsp;start</tt></dd>
+</dl>
+<dl><dt><strong>name</strong></dt>
+</dl>
+<dl><dt><strong>pid</strong></dt>
+<dd><tt>Return&nbsp;identifier&nbsp;(PID)&nbsp;of&nbsp;process&nbsp;or&nbsp;`None`&nbsp;if&nbsp;it&nbsp;has&nbsp;yet&nbsp;to&nbsp;start</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TimeoutError">class <strong>TimeoutError</strong></a>(<a href="multiprocessing.html#ProcessError">ProcessError</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="multiprocessing.html#TimeoutError">TimeoutError</a></dd>
+<dd><a href="multiprocessing.html#ProcessError">ProcessError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors inherited from <a href="multiprocessing.html#ProcessError">ProcessError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="TimeoutError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#TimeoutError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;help(type(x))&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#TimeoutError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="TimeoutError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#TimeoutError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="TimeoutError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#TimeoutError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="TimeoutError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#TimeoutError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="TimeoutError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#TimeoutError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="TimeoutError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TimeoutError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#TimeoutError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="TimeoutError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#TimeoutError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="TimeoutError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TimeoutError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#TimeoutError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<dl><dt><a name="TimeoutError-__unicode__"><strong>__unicode__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-Array"><strong>Array</strong></a>(typecode_or_type, size_or_initializer, **kwds)</dt><dd><tt>Returns&nbsp;a&nbsp;synchronized&nbsp;shared&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-BoundedSemaphore"><strong>BoundedSemaphore</strong></a>(value<font color="#909090">=1</font>)</dt><dd><tt>Returns&nbsp;a&nbsp;bounded&nbsp;semaphore&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-Condition"><strong>Condition</strong></a>(lock<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;a&nbsp;condition&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-Event"><strong>Event</strong></a>()</dt><dd><tt>Returns&nbsp;an&nbsp;event&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-JoinableQueue"><strong>JoinableQueue</strong></a>(maxsize<font color="#909090">=0</font>)</dt><dd><tt>Returns&nbsp;a&nbsp;queue&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-Lock"><strong>Lock</strong></a>()</dt><dd><tt>Returns&nbsp;a&nbsp;non-recursive&nbsp;lock&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-Manager"><strong>Manager</strong></a>()</dt><dd><tt>Returns&nbsp;a&nbsp;manager&nbsp;associated&nbsp;with&nbsp;a&nbsp;running&nbsp;server&nbsp;process<br>
+&nbsp;<br>
+The&nbsp;managers&nbsp;methods&nbsp;such&nbsp;as&nbsp;`<a href="#-Lock">Lock</a>()`,&nbsp;`<a href="#-Condition">Condition</a>()`&nbsp;and&nbsp;`<a href="#-Queue">Queue</a>()`<br>
+can&nbsp;be&nbsp;used&nbsp;to&nbsp;create&nbsp;shared&nbsp;objects.</tt></dd></dl>
+ <dl><dt><a name="-Pipe"><strong>Pipe</strong></a>(duplex<font color="#909090">=True</font>)</dt><dd><tt>Returns&nbsp;two&nbsp;connection&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;connected&nbsp;by&nbsp;a&nbsp;pipe</tt></dd></dl>
+ <dl><dt><a name="-Pool"><strong>Pool</strong></a>(processes<font color="#909090">=None</font>, initializer<font color="#909090">=None</font>, initargs<font color="#909090">=()</font>, maxtasksperchild<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;a&nbsp;process&nbsp;pool&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-Queue"><strong>Queue</strong></a>(maxsize<font color="#909090">=0</font>)</dt><dd><tt>Returns&nbsp;a&nbsp;queue&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-RLock"><strong>RLock</strong></a>()</dt><dd><tt>Returns&nbsp;a&nbsp;recursive&nbsp;lock&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-RawArray"><strong>RawArray</strong></a>(typecode_or_type, size_or_initializer)</dt><dd><tt>Returns&nbsp;a&nbsp;shared&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-RawValue"><strong>RawValue</strong></a>(typecode_or_type, *args)</dt><dd><tt>Returns&nbsp;a&nbsp;shared&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-Semaphore"><strong>Semaphore</strong></a>(value<font color="#909090">=1</font>)</dt><dd><tt>Returns&nbsp;a&nbsp;semaphore&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-Value"><strong>Value</strong></a>(typecode_or_type, *args, **kwds)</dt><dd><tt>Returns&nbsp;a&nbsp;synchronized&nbsp;shared&nbsp;<a href="__builtin__.html#object">object</a></tt></dd></dl>
+ <dl><dt><a name="-active_children"><strong>active_children</strong></a>()</dt><dd><tt>Return&nbsp;list&nbsp;of&nbsp;process&nbsp;objects&nbsp;corresponding&nbsp;to&nbsp;live&nbsp;child&nbsp;processes</tt></dd></dl>
+ <dl><dt><a name="-allow_connection_pickling"><strong>allow_connection_pickling</strong></a>()</dt><dd><tt>Install&nbsp;support&nbsp;for&nbsp;sending&nbsp;connections&nbsp;and&nbsp;sockets&nbsp;between&nbsp;processes</tt></dd></dl>
+ <dl><dt><a name="-cpu_count"><strong>cpu_count</strong></a>()</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;CPUs&nbsp;in&nbsp;the&nbsp;system</tt></dd></dl>
+ <dl><dt><a name="-current_process"><strong>current_process</strong></a>()</dt><dd><tt>Return&nbsp;process&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;representing&nbsp;the&nbsp;current&nbsp;process</tt></dd></dl>
+ <dl><dt><a name="-freeze_support"><strong>freeze_support</strong></a>()</dt><dd><tt>Check&nbsp;whether&nbsp;this&nbsp;is&nbsp;a&nbsp;fake&nbsp;forked&nbsp;process&nbsp;in&nbsp;a&nbsp;frozen&nbsp;executable.<br>
+If&nbsp;so&nbsp;then&nbsp;run&nbsp;code&nbsp;specified&nbsp;by&nbsp;commandline&nbsp;and&nbsp;exit.</tt></dd></dl>
+ <dl><dt><a name="-get_logger"><strong>get_logger</strong></a>()</dt><dd><tt>Return&nbsp;package&nbsp;logger&nbsp;--&nbsp;if&nbsp;it&nbsp;does&nbsp;not&nbsp;already&nbsp;exist&nbsp;then&nbsp;it&nbsp;is&nbsp;created</tt></dd></dl>
+ <dl><dt><a name="-log_to_stderr"><strong>log_to_stderr</strong></a>(level<font color="#909090">=None</font>)</dt><dd><tt>Turn&nbsp;on&nbsp;logging&nbsp;and&nbsp;add&nbsp;a&nbsp;handler&nbsp;which&nbsp;prints&nbsp;to&nbsp;stderr</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>SUBDEBUG</strong> = 5<br>
+<strong>SUBWARNING</strong> = 25<br>
+<strong>__all__</strong> = ['Process', 'current_process', 'active_children', 'freeze_support', 'Manager', 'Pipe', 'cpu_count', 'log_to_stderr', 'get_logger', 'allow_connection_pickling', 'BufferTooShort', 'TimeoutError', 'Lock', 'RLock', 'Semaphore', 'BoundedSemaphore', 'Condition', 'Event', 'Queue', 'JoinableQueue', ...]<br>
+<strong>__author__</strong> = 'R. Oudkerk (r.m.oudkerk@gmail.com)'<br>
+<strong>__version__</strong> = '0.70a1'</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#7799ee">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Author</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#7799ee"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">R.&nbsp;Oudkerk&nbsp;(r.m.oudkerk@gmail.com)</td></tr></table>
+</body></html>
